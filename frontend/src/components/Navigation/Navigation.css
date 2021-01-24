@@ -1,0 +1,19 @@
+.navbar-top {
+  margin-top: 0%;
+  padding-top: 0%;
+  width: 100%;
+  height: 3rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.navbar-top > .LogoIcon {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 2%;
+  padding: auto;
+  max-width: 10%;
+}
