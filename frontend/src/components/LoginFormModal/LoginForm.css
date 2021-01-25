@@ -1,4 +1,4 @@
-button {
+button.login {
   text-decoration: none;
   border: none;
   outline: none;
@@ -9,6 +9,11 @@ button {
   padding: auto;
 }
 
-button:hover {
+button.login:hover {
   color: rgb(0, 200, 5);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
 }
