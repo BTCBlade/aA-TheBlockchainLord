@@ -4,6 +4,7 @@ const asyncHandler = require("express-async-handler");
 const db = require("../../db/models");
 const router = express.Router();
 
+//Retrieve portfolio
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
@@ -18,5 +19,7 @@ router.get(
     return res.send(portfolio);
   })
 );
+
+//Update Portfolio
 
 module.exports = router;

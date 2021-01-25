@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import SignUpButton from "../SignUpButton";
 import LoginFormModal from "../LoginFormModal";
 import LogoIcon from "../LogoIcon";
 
@@ -17,7 +18,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <SignUpButton />
       </>
     );
   }
@@ -25,6 +26,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="navbar-top">
       <LogoIcon loggedIn={!!sessionUser} />
+      <span>TheBlockchainLord</span>
       <ul>
         <li>
           <NavLink exact to="/"></NavLink>

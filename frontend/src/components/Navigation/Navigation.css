@@ -17,3 +17,15 @@
   padding: auto;
   max-width: 10%;
 }
+
+.navbar-top > span {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+  font-weight: 600;
+}
+
+.navbar-top > ul {
+  list-style-type: none;
+  margin-left: auto;
+  margin-right: 3%;
+}

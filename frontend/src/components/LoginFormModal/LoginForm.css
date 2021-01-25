@@ -1,0 +1,14 @@
+button {
+  text-decoration: none;
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: auto;
+  padding: auto;
+}
+
+button:hover {
+  color: rgb(0, 200, 5);
+}
