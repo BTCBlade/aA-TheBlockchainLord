@@ -13,7 +13,9 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert("WatchlistAssetsJoins", [
-      { watchlistId: 1, assetId: 4 },
+      { watchlistId: 1, assetId: 1 },
+      { watchlistId: 1, assetId: 2 },
+      { watchlistId: 1, assetId: 3 },
       { watchlistId: 2, assetId: 1 },
       { watchlistId: 2, assetId: 2 },
       { watchlistId: 3, assetId: 1 },

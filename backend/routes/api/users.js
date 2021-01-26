@@ -8,6 +8,7 @@ const router = express.Router();
 
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
+const db = require("../../db/models");
 
 const validateSignup = [
   check("email")
@@ -39,6 +40,26 @@ router.post(
     return res.json({
       user,
     });
+  })
+);
+
+// For fetching information about User
+router.get(
+  "/:id(\\d)",
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.id, 10);
+
+    const user = await db.User.findByPk(userId, {
+      include: [
+        {
+          model: db.Watchlist,
+        },
+        {
+          model: db.Portfolio,
+        },
+      ],
+    });
+    return res.send(user);
   })
 );
 

@@ -21,5 +21,15 @@ router.get(
 );
 
 //Update Portfolio
+router.put(
+  "/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const portfolioId = parseInt(req.params.id, 10);
+    const updateInfo = req.body;
+    console.log(req.body);
+
+    return res.send(req.body);
+  })
+);
 
 module.exports = router;
