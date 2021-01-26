@@ -25,7 +25,6 @@ export const getWatchlist = (user) => async (dispatch) => {
   const responseWatchlist = await fetch(
     `/api/watchlists/${responseUser.data.Watchlists[0].id}`
   );
-  console.log(responseWatchlist);
   dispatch(load(responseWatchlist.data));
 };
 
@@ -35,8 +34,7 @@ const watchlistReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign({}, state);
-      newState.watchlist = action.payload;
+      newState = Object.assign(action.payload, state);
       return newState;
     }
     default:

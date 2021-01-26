@@ -10,21 +10,19 @@ export default function WatchList() {
   useEffect(() => {
     dispatch(getWatchlist(sessionUser));
   }, [dispatch]);
-  const watchlist = useSelector((state) => state.watchlist);
-  const watchlistSymbolArr = watchlist.Assets.map((ele) => {
-    return ele.symbol;
-  });
 
+  const watchlist = useSelector((state) => state.watchlist);
   return (
     <>
       <h1>Watchlist</h1>
       <ul>
-        {watchlist.Assets.map((ele) => (
-          <li>
-            {" "}
-            {ele.symbol} - {ele.backup}{" "}
-          </li>
-        ))}
+        {watchlist.Assets &&
+          watchlist.Assets.map((ele) => (
+            <li>
+              {" "}
+              {ele.symbol} - {ele.backupUSDPrice}{" "}
+            </li>
+          ))}
       </ul>
     </>
   );

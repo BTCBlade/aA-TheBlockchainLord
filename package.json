@@ -1,5 +1,5 @@
 {
-  "name": "aA-authenticate-me",
+  "name": "aA-TheBlockchainLord",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,16 +11,16 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
-  },
+  }
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BTCBlade/aA-authenticate-me.git"
+    "url": "git+https://github.com/BTCBlade/aA-TheBlockchainLord.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BTCBlade/aA-authenticate-me/issues"
+    "url": "https://github.com/BTCBlade/aA-TheBlockchainLord/issues"
   },
-  "homepage": "https://github.com/BTCBlade/aA-authenticate-me#readme"
+  "homepage": "https://github.com/BTCBlade/aA-TheBlockchainLord#readme"
 }
