@@ -11,7 +11,7 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
-  }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BTCBlade/aA-TheBlockchainLord.git"
