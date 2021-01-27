@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 function LoginForm() {
@@ -20,33 +21,41 @@ function LoginForm() {
 
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
+      <h2>Welcome</h2>
       <div>
-        <label for="username-email">Username or Email</label>
+        <h5>Credentials</h5>
+      </div>
+      <div>
+        <label for="username-email"></label>
         <input
           id="username-email"
           type="text"
           value={credential}
+          placeholder="Email/Username"
           onChange={(e) => setCredential(e.target.value)}
           required
         />
       </div>
       <div>
-        <label for="password">Password</label>
+        <label for="password"></label>
         <input
           id="password"
           type="password"
           value={password}
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
-
-      <button type="submit">Log In</button>
+      <button type="submit">Login</button>
+      <div>
+        <ul className="login-error-space">
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <a href="/signup">Make New Account</a>
+      </div>
     </form>
   );
 }

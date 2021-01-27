@@ -78,16 +78,19 @@ router.get(
         },
       }
     );
+
     const data = await response.json();
-    const dataStep1 = await data.data.map((ele) => {
-      return {
-        cmcId: ele.id,
-        name: ele.name,
-        symbol: ele.symbol,
-        tags: ele.tags,
-        quote: ele.quote,
-      };
-    });
+    const dataStep1 = await Promise.all(
+      data.data.map((ele) => {
+        return {
+          cmcId: ele.id,
+          name: ele.name,
+          symbol: ele.symbol,
+          tags: ele.tags,
+          quote: ele.quote,
+        };
+      })
+    );
     const dataStep2 = await Promise.all(
       dataStep1.map(async (ele) => {
         const response = await fetch(
@@ -100,11 +103,12 @@ router.get(
           }
         );
         const data = await response.json();
-        const assetDetails = {
+        const assetDetails = await {
           assetDetails: data.data[ele.cmcId],
         };
-        const ret = Object.assign(ele, assetDetails);
-        console.log(ret);
+
+        const ret = await Object.assign(ele, assetDetails);
+
         return ret;
       })
     );

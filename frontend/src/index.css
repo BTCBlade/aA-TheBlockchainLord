@@ -1,4 +1,25 @@
 /* TODO Add site wide styles */
+
+/* font-family: "Cinzel", serif;
+font-family: "Gentium Basic", serif;
+font-family: Roboto, sans-serif; */
+
+/* Color Pallet Gray Theme
+darkest color rgb(42, 43, 46)
+second darkest rgb(90, 90, 102)
+third lightish gray #ABABB5
+*/
+.project-name {
+  font-family: "Roboto", sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Roboto", sans-serif;
+}
 * {
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
+  color: rgb(42, 43, 46);
 }
