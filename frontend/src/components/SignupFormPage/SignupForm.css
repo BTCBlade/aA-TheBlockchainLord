@@ -1,8 +1,14 @@
+.signup-page-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .signup-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin: auto;
+  margin-right: 2%;
   padding: 0.5rem;
   width: 42%;
 }
@@ -14,4 +20,36 @@
 
 .signup-form > div > label {
   font-size: 0.8rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+.signup-form > div > input {
+  font-size: 0.6rem;
+  padding: 0.2rem;
+}
+.signup-form > .signup-button-div {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.signup-button-div > button {
+  width: 95%;
+  height: 2rem;
+  margin-top: 1rem;
+}
+.signup-button-div > button:enabled {
+  background-color: #7a7963;
+}
+.signup-button-div > p {
+  font-size: 0.8rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.signup-form > ul {
+  font-size: 0.8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 0.2rem;
+  height: 2rem;
 }
