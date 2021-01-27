@@ -3,7 +3,7 @@ import * as sessionActions from "../../store/session";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function LoginForm() {
+function LoginForm({ setShowModal }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
@@ -54,7 +54,9 @@ function LoginForm() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <a href="/signup">Make New Account</a>
+        <NavLink to="/signup" onClick={() => setShowModal(false)}>
+          Make New Account
+        </NavLink>
       </div>
     </form>
   );

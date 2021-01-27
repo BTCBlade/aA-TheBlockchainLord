@@ -8,6 +8,8 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  background-color: #7a7963;
+  border-radius: 0.5rem;
 }
 
 .navbar-top > .LogoIcon {
@@ -19,7 +21,7 @@
 }
 
 .navbar-top > span {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-left: 0.5rem;
   font-weight: 600;
 }

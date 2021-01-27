@@ -3,14 +3,15 @@ button.login {
   border: none;
   outline: none;
   background-color: inherit;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
   margin: auto;
   padding: auto;
 }
 
 button.login:hover {
-  color: rgb(90, 90, 102);
+  color: #c7c9cd;
+  cursor: pointer;
 }
 
 .LoginForm {
@@ -40,7 +41,7 @@ button.login:hover {
   border-color: rgb(90, 90, 102);
 }
 .LoginForm > button:hover {
-  background-color: rgb(90, 90, 102);
+  background-color: #7a7963;
   color: white;
 }
 .LoginForm > h2 {
@@ -56,15 +57,19 @@ button.login:hover {
   text-decoration: none;
   font-size: 0.2rem;
   font-weight: 900;
+  color: #7a7963;
 }
 .LoginForm > div > a:hover {
-  color: rgb(90, 90, 102);
+  color: #2a2b2e;
 }
 .LoginForm input {
   font-size: 0.7rem;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   text-align: center;
+}
+.LoginForm input:hover {
+  background-color: #e7e7e2;
 }
 .LoginForm input::placeholder {
   text-align: center;

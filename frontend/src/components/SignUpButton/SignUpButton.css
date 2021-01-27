@@ -1,5 +1,5 @@
 .signupbutton {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
   color: inherit;
   text-decoration: none;
@@ -8,12 +8,10 @@
   padding-bottom: 0.5rem;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-  border-radius: 1.5rem;
+  border-radius: 0.5rem;
   margin-left: 1.5rem;
-
-  background-color: #ababb5;
 }
 
 .signupbutton:hover {
-  background-color: rgb(90, 90, 102);
+  color: #c7c9cd;
 }
