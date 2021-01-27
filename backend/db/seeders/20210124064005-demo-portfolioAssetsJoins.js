@@ -16,18 +16,21 @@ module.exports = {
       {
         portfolioId: 1,
         assetId: 1,
+        quantityOfAsset: 1.524356,
       },
       {
         portfolioId: 1,
         assetId: 2,
+        quantityOfAsset: 52.81,
       },
       {
         portfolioId: 1,
         assetId: 2,
+        quantityOfAsset: 1.241231455566,
       },
-      { portfolioId: 2, assetId: 3 },
-      { portfolioId: 2, assetId: 4 },
-      { portfolioId: 3, assetId: 2 },
+      { portfolioId: 2, assetId: 3, quantityOfAsset: 512313141.11 },
+      { portfolioId: 2, assetId: 4, quantityOfAsset: 42 },
+      { portfolioId: 3, assetId: 2, quantityOfAsset: 8.5 },
     ]);
   },
 

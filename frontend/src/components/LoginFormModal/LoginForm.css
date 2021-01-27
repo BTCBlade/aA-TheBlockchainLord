@@ -13,7 +13,13 @@ button.login:hover {
   color: rgb(0, 200, 5);
 }
 
-form {
+.LoginForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem;
+}
+.LoginForm > div {
   display: flex;
   flex-direction: column;
 }

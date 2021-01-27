@@ -3,11 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const Asset = sequelize.define(
     "Asset",
     {
+      cmcId: DataTypes.INTEGER,
+      name: DataTypes.STRING,
       symbol: DataTypes.STRING,
-      fullName: DataTypes.STRING,
+      tags: DataTypes.ARRAY(DataTypes.STRING(64)),
+      quotes: DataTypes.JSON,
       assetDetails: DataTypes.JSON,
-      assetCategories: DataTypes.ARRAY(DataTypes.STRING(64)),
-      backupUSDPrice: DataTypes.NUMERIC,
     },
     {}
   );

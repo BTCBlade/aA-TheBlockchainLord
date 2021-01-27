@@ -1,4 +1,45 @@
 "use strict";
+const fetch = require("node-fetch");
+
+const { apiKeys } = require("../../config");
+const { coinmarketcapKey } = apiKeys;
+
+const seederAssetsArray = async () => {
+  const response = await fetch(
+    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=50&convert=USD",
+    {
+      headers: {
+        "Content-Type": "application/json",
+        "X-CMC_PRO_API_KEY": coinmarketcapKey,
+      },
+    }
+  );
+  const data = await response.json();
+  const dataStep1 = data.data.map((ele) => {
+    return {
+      cmcId: ele.id,
+      name: ele.name,
+      symbol: ele.symbol,
+      tags: ele.tags,
+      quote: JSON.stringify(ele.quote),
+    };
+  });
+  const dataStep2 = dataStep1.map(async (ele) => {
+    const response = await fetch(
+      `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${ele.cmcId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "X-CMC_PRO_API_KEY": coinmarketcapKey,
+        },
+      }
+    );
+    const data = await response.json();
+    const description = { description: data.data[ele.cmcId] };
+    return Object.assign(ele, description);
+  });
+  return dataStep2;
+};
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

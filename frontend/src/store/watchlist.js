@@ -25,6 +25,7 @@ export const getWatchlist = (user) => async (dispatch) => {
   const responseWatchlist = await fetch(
     `/api/watchlists/${responseUser.data.Watchlists[0].id}`
   );
+  debugger;
   dispatch(load(responseWatchlist.data));
 };
 

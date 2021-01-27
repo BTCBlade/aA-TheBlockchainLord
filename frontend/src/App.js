@@ -25,8 +25,7 @@ function App() {
             <PublicHomePage />
           </Route>
           <Route exact path="/dashboard">
-            {/* {sessionUser ? <Redirect to="/dashboard" /> : <Redirect to="/" />} */}
-            <Dashboard />
+            {sessionUser ? <Dashboard /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />

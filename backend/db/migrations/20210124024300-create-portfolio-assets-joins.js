@@ -16,6 +16,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Assets" },
       },
+      quanityOfAsset: {
+        type: Sequelize.DECIMAL,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

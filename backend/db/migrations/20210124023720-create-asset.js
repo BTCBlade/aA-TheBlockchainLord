@@ -8,24 +8,29 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      symbol: {
+      cmcId: {
         allowNull: false,
         unique: true,
-        type: Sequelize.STRING(8),
+        type: Sequelize.INTEGER,
       },
-      fullName: {
+      name: {
         allowNull: false,
         type: Sequelize.STRING(64),
+      },
+      symbol: {
+        allowNull: false,
+        type: Sequelize.STRING(8),
+      },
+      tags: {
+        type: Sequelize.ARRAY(Sequelize.STRING(64)),
+      },
+      quote: {
+        type: Sequelize.JSON,
       },
       assetDetails: {
         type: Sequelize.JSON,
       },
-      assetCategories: {
-        type: Sequelize.ARRAY(Sequelize.STRING(64)),
-      },
-      backupUSDPrice: {
-        type: Sequelize.NUMERIC(8, 2),
-      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

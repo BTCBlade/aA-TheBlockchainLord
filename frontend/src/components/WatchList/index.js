@@ -15,12 +15,15 @@ export default function WatchList() {
   return (
     <>
       <h1>Watchlist</h1>
-      <ul>
+      <ul className="watchlist-ul">
         {watchlist.Assets &&
           watchlist.Assets.map((ele) => (
             <li>
-              {" "}
-              {ele.symbol} - {ele.backupUSDPrice}{" "}
+              <div>
+                <button className="removeOne">-</button>
+                {ele.symbol} - {ele.backupUSDPrice}
+                <button>+</button>
+              </div>
             </li>
           ))}
       </ul>
