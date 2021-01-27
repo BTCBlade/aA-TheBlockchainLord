@@ -50,8 +50,13 @@ function SignupFormPage() {
 
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
-      <h2>Create an account</h2>
-      <h5>Just HODL To The Moon</h5>
+      <h2>
+        The fiat industrial era is about to rocket launch into the digital age
+      </h2>
+      <h6>
+        Sign up to follow my crypto portfolio and to explore my first solo full
+        stack web project postgre-express-redux-react learning project!
+      </h6>
       <div>
         <label for="signup-email">Email</label>
         <input

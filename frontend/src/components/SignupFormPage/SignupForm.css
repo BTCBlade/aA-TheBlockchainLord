@@ -2,7 +2,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 1rem;
+  margin: auto;
   padding: 0.5rem;
-  width: 25%;
+  width: 42%;
+}
+
+.signup-form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form > div > label {
+  font-size: 0.8rem;
 }
