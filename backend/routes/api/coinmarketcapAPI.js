@@ -64,7 +64,7 @@ router.get(
       }
     );
     const data = await response.json();
-    const dataStep1 = await data.data.map((ele) => {
+    const data1 = await data.data.map((ele) => {
       return {
         cmcId: ele.id,
         name: ele.name,
@@ -74,7 +74,7 @@ router.get(
       };
     });
 
-    res.json(dataStep1);
+    res.json(data1);
   })
 );
 
@@ -82,11 +82,10 @@ router.get(
 router.get(
   "/seeder",
   asyncHandler(async (req, res) => {
-    console.log(dataStep1);
-    const dataStep2 = [];
-    for (let i = 0; i < dataStep1.length; i++) {
+    const fivetyAssets = Object.assign({}, dataStep1);
+    for (let i = 25; i < fivetyAssets.length; i++) {
       const response = await fetch(
-        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${dataStep1[i].cmcId}`,
+        `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${fivetyAssets[i].cmcId}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -95,13 +94,58 @@ router.get(
         }
       );
       const data = await response.json();
-      const assetDetails = await {
-        assetDetails: data.data[dataStep1[i].cmcId],
+      const assetDetails = {
+        assetDetails: data.data[fivetyAssets[i].cmcId],
       };
-
-      const ret = await Object.assign(dataStep1[i], assetDetails);
-      dataStep2.push(ret);
+      const ret = Object.assign(fivetyAssets[i], assetDetails);
+      console.log(i, ret);
+      fivetyAssets[i] = ret;
     }
+    //console.log(Object.values(fivetyAssets));
+    res.json(Object.values(fivetyAssets));
+    //approach 1
+    // const dataStep2 = await Promise.all(
+    //   dataStep1.map(async (ele) => {
+    //     const response = await fetch(
+    //       `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${ele.cmcId}`,
+    //       {
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //           "X-CMC_PRO_API_KEY": coinmarketcapKey,
+    //         },
+    //       }
+    //     );
+    //     const data = await response.json();
+    //     const assetDetails = await {
+    //       assetDetails: data.data[ele.cmcId],
+    //     };
+
+    //     const ret = await Object.assign(ele, assetDetails);
+
+    //     return ret;
+    //   })
+    // );
+
+    //approach 2
+    // const dataStep2 = [];
+    // for (let i = 0; i < dataStep1.length; i++) {
+    //   const response = await fetch(
+    //     `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${dataStep1[i].cmcId}`,
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //         "X-CMC_PRO_API_KEY": coinmarketcapKey,
+    //       },
+    //     }
+    //   );
+    //   const data = await response.json();
+    //   const assetDetails = await {
+    //     assetDetails: data.data[dataStep1[i].cmcId],
+    //   };
+
+    //   const ret = await Object.assign(dataStep1[i], assetDetails);
+    //   dataStep2.push(ret);
+    // }
     // await dataStep1.forEach(async (ele) => {
     //   const response = await fetch(
     //     `https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?id=${ele.cmcId}`,
@@ -120,8 +164,6 @@ router.get(
     //   const ret = await Object.assign(ele, assetDetails);
     //   await dataStep2.push(ret);
     // });
-
-    res.json(dataStep2);
   })
 );
 
