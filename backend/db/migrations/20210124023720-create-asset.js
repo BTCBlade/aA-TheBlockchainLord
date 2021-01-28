@@ -25,10 +25,10 @@ module.exports = {
         type: Sequelize.ARRAY(Sequelize.STRING(64)),
       },
       quote: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
       },
       assetDetails: {
-        type: Sequelize.JSON,
+        type: Sequelize.TEXT,
       },
 
       createdAt: {

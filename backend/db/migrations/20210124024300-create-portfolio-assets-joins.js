@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Assets" },
       },
-      quanityOfAsset: {
+      quantityOfAsset: {
         type: Sequelize.DECIMAL,
       },
       createdAt: {
