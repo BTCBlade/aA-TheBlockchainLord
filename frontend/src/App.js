@@ -8,6 +8,7 @@ import { getAllAssets } from "./store/assets";
 import Navigation from "./components/Navigation";
 import PublicHomePage from "./components/PublicHomePage";
 import Dashboard from "./components/Dashboard";
+import Container from "./components/Container";
 
 function App() {
   const dispatch = useDispatch();

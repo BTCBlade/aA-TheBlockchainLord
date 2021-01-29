@@ -1,0 +1,10 @@
+.splash-main-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.splash-assetsdisplay-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}

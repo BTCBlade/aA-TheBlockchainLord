@@ -41,7 +41,24 @@ export default function AssetsDisplay() {
   const dispatch = useDispatch();
   const assets = useSelector((state) => state.assets);
 
-  const assetsArr = Object.values(assets);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  let assetsArr;
+  // useEffect(() => {
+  //   assetsArr = Object.values(assets);
+  //   console.log(assetsArr);
+  // }, [assets]);
+  assetsArr = Object.values(assets);
   const classes = useStyles();
   const rows = assetsArr.map((asset) => {
     return createData(
@@ -55,22 +72,10 @@ export default function AssetsDisplay() {
     );
   });
 
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
-
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map((column) => (

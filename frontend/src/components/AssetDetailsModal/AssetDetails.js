@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./AssetDetails.css";
 
 export default function AssetDetails({ asset }) {
   const assetUrls = asset.assetDetails.urls;
