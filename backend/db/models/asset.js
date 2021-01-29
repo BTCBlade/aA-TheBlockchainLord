@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       symbol: DataTypes.STRING,
       tags: DataTypes.ARRAY(DataTypes.STRING(64)),
-      quotes: DataTypes.TEXT,
+      quote: DataTypes.TEXT,
       assetDetails: DataTypes.TEXT,
     },
     {}

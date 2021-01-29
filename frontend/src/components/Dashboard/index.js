@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import WatchList from "../WatchList";
+import WatchListsContainer from "../WatchListsContainer";
+import AssetsDisplay from "../AssetsDisplay";
 
 export default function Dashboard() {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <>
-      <WatchList />
       <h1>Hello from dashboard</h1>
+      <AssetsDisplay />
+      <WatchListsContainer />
     </>
   );
   //(

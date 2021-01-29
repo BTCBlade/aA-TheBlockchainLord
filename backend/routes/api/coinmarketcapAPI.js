@@ -1,9 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
 const fetch = require("node-fetch");
-// import cats from "./mockData/cats.json";
-const { dataStep1 } = require("./dataStep1.js");
-//import dataStep1 from "./dataStep1.json";
 
 const db = require("../../db/models");
 const router = express.Router();
@@ -41,7 +38,6 @@ router.get(
         }
       );
       const data = await response.json();
-      console.log(data);
       const assetDetails = {
         assetDetails: data.data[fivetyAssets[i].cmcId],
       };

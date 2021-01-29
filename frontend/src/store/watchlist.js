@@ -4,9 +4,9 @@ const LOAD = "watchlist/LOAD";
 const ADD_ONE = "watchlist/ADD_ONE";
 const REMOVE_ONE = "watchlist/REMOVE_ONE";
 
-const load = (watchlist) => ({
+const load = (watchlists) => ({
   type: LOAD,
-  payload: watchlist,
+  payload: watchlists,
 });
 
 const addOne = (asset) => ({
@@ -19,14 +19,18 @@ const removeOne = (asset) => ({
   payload: asset,
 });
 
-export const getWatchlist = (user) => async (dispatch) => {
+export const getWatchlists = (user) => async (dispatch) => {
   const responseUser = await fetch(`/api/users/${user.id}`);
 
-  const responseWatchlist = await fetch(
-    `/api/watchlists/${responseUser.data.Watchlists[0].id}`
-  );
-  debugger;
-  dispatch(load(responseWatchlist.data));
+  const watchlists = responseUser.data.Watchlists;
+
+  //attach correct Assets in an array to watchlist
+  watchlists.forEach(async (watchlist) => {
+    const res = await fetch(`/api/watchlists/${watchlist.id}`);
+    watchlist.Assets = res.data.Assets;
+  });
+
+  dispatch(load(watchlists));
 };
 
 const initialState = {};
@@ -35,7 +39,10 @@ const watchlistReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign(action.payload, state);
+      newState = Object.assign({}, state);
+      action.payload.forEach((watchlist) => {
+        newState[watchlist.id] = watchlist;
+      });
       return newState;
     }
     default:

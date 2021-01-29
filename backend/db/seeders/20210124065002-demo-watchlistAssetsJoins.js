@@ -21,6 +21,13 @@ module.exports = {
       { watchlistId: 3, assetId: 1 },
       { watchlistId: 3, assetId: 2 },
       { watchlistId: 3, assetId: 3 },
+      { watchlistId: 4, assetId: 5 },
+      { watchlistId: 4, assetId: 8 },
+      { watchlistId: 4, assetId: 13 },
+      { watchlistId: 4, assetId: 21 },
+      { watchlistId: 4, assetId: 34 },
+      { watchlistId: 4, assetId: 35 },
+      { watchlistId: 4, assetId: 36 },
     ]);
   },
 

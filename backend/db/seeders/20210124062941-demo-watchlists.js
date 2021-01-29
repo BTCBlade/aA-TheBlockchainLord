@@ -14,7 +14,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert("Watchlists", [
       {
-        name: "Watch of Demo-lition",
+        name: "Watchlist1 of Demo-lition",
         description: "Top 3 market cap crypto watchlist",
         userId: 1,
       },
@@ -27,6 +27,11 @@ module.exports = {
         name: "Watchlist of UserId 3",
         description: "Coldest Watchlist of all time",
         userId: 3,
+      },
+      {
+        name: "Watchlist2 of Demo_lition",
+        description: "Asset 5 8 13 21 34 35 36",
+        userId: 1,
       },
     ]);
   },

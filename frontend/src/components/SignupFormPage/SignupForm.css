@@ -38,6 +38,7 @@
 }
 .signup-button-div > button:enabled {
   background-color: #7a7963;
+  cursor: pointer;
 }
 .signup-button-div > p {
   font-size: 0.8rem;
