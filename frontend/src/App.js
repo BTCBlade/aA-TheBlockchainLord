@@ -14,9 +14,11 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoadedAssets, setIsLoadedAssets] = useState(false);
   const sessionUser = useSelector((state) => state.session.user);
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then((data) => setIsLoaded(true));
-    dispatch(getAllAssets()).then((data) => setIsLoadedAssets(true));
+  useEffect(async () => {
+    await dispatch(sessionActions.restoreUser()).then((data) =>
+      setIsLoaded(true)
+    );
+    await dispatch(getAllAssets()).then((data) => setIsLoadedAssets(true));
     if (sessionUser) {
       //send dispatch to watchlist and portfolio reducer
     }

@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import WatchListsContainer from "../WatchListsContainer";
+import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <>
-      <h1>Hello from dashboard</h1>
-      <AssetsDisplay />
-      <WatchListsContainer />
+      <div className="dashboard-container">
+        <div className="dashboard-assetsdisplay-container">
+          All Assets
+          <AssetsDisplay className="dashboard-assetsdisplay" />
+        </div>
+        <div className="dashboard-rightside-container">
+          <div className="dashboard-assetdetails-container">Asset Details</div>
+        </div>
+      </div>
     </>
   );
   //(

@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="navbar-top">
       <LogoIcon loggedIn={!!sessionUser} />
-      <span className="project-name">TheBlockchainLord</span>
+      <span className="project-name">BlockchainLords</span>
       <ul>
         <li>
           <NavLink exact to="/"></NavLink>

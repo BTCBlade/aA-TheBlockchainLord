@@ -1,0 +1,7 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+}
+.dashboard-assetsdisplay-container {
+  width: 42%;
+}
