@@ -37,7 +37,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function AssetsDisplay() {
+export default function AssetsDisplay({ setAssetDetailsData }) {
   const dispatch = useDispatch();
   const assets = useSelector((state) => state.assets);
 
@@ -51,6 +51,11 @@ export default function AssetsDisplay() {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
+  };
+  //Handle row click and load assetDetails Display one layer up
+  const handleRowClick = (row) => {
+    console.log(row);
+    setAssetDetailsData(row);
   };
 
   let assetsArr;
@@ -94,7 +99,13 @@ export default function AssetsDisplay() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow
+                    onClick={(e) => handleRowClick(row)}
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.code}
+                  >
                     {columns.map((column) => {
                       const value = row[column.id];
                       if (column.id !== "logo") {

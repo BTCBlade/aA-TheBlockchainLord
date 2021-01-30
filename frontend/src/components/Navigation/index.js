@@ -8,12 +8,14 @@ import LogoIcon from "../LogoIcon";
 
 import "./Navigation.css";
 
-function Navigation({ isLoaded }) {
+function Navigation({ isLoaded, setIsLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = <ProfileButton user={sessionUser} />;
+    sessionLinks = (
+      <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
+    );
   } else {
     sessionLinks = (
       <>
@@ -26,12 +28,11 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="navbar-top">
       <LogoIcon loggedIn={!!sessionUser} />
+
       <span className="project-name">BlockchainLords</span>
+
       <ul>
-        <li>
-          <NavLink exact to="/"></NavLink>
-          {isLoaded && sessionLinks}
-        </li>
+        <li>{isLoaded && sessionLinks}</li>
       </ul>
     </nav>
   );

@@ -1,15 +1,23 @@
 const SET_IS_ASSETS_LOADED = "loading/setisAssetsLoaded";
 const SET_IS_WATCHLISTS_LOADED = "loading/setisWatchlistsLoaded";
+const SET_IS_PORTFOLIO_LOADED = "loading/setisPortfolioLoaded";
 
-const setisAssetsLoaded = (isLoaded) => {
+export const setisAssetsLoaded = (isLoaded) => {
   return {
     type: SET_IS_ASSETS_LOADED,
     payload: isLoaded,
   };
 };
-const setisWatchlistsLoaded = (isLoaded) => {
+export const setisWatchlistsLoaded = (isLoaded) => {
+  console.log("from setiswatchlistloaded", isLoaded);
   return {
     type: SET_IS_WATCHLISTS_LOADED,
+    payload: isLoaded,
+  };
+};
+export const setisPortfolioLoaded = (isLoaded) => {
+  return {
+    type: SET_IS_PORTFOLIO_LOADED,
     payload: isLoaded,
   };
 };
@@ -21,15 +29,22 @@ const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_IS_ASSETS_LOADED: {
       newState = Object.assign({}, state);
-      state.isAssetsLoaded = action.payload;
+      newState.isAssetsLoaded = action.payload;
       return newState;
     }
     case SET_IS_WATCHLISTS_LOADED: {
       newState = Object.assign({}, state);
-      state.isWatchlistsLoaded = action.payload;
+      newState.isWatchlistsLoaded = action.payload;
+      return newState;
+    }
+    case SET_IS_PORTFOLIO_LOADED: {
+      newState = Object.assign({}, state);
+      newState.isPortfolioLoaded = action.payload;
       return newState;
     }
     default:
       return state;
   }
 };
+
+export default loadingReducer;

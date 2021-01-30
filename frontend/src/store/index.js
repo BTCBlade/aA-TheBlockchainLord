@@ -2,11 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import sessionReducer from "./session";
+import loadingReducer from "./loading";
 import watchlistReducer from "./watchlist";
+
 import assetsReducer from "./assets";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
+  loading: loadingReducer,
   watchlist: watchlistReducer,
   assets: assetsReducer,
 });
