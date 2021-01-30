@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import { ReactComponent as RocketSVG } from "./rocket.svg";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -53,6 +54,7 @@ function SignupFormPage() {
 
   return (
     <div className="signup-page-container">
+      <RocketSVG />
       <form className="signup-form" onSubmit={handleSubmit}>
         <h2>
           The fiat industrial era is about to rocket launch into the digital age

@@ -3,8 +3,29 @@
   display: flex;
   flex-direction: column;
 }
+.splash-sub-container-1 {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+.splash-sub-container-1-left {
+  margin-left: 2%;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  font-size: 0.8rem;
+}
+
 .splash-assetsdisplay-container {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
+  margin: auto;
+}
+
+.splash-video-container {
+  margin-left: 2%;
+  border-radius: 20px;
+  width: 80%;
+  overflow: hidden;
 }

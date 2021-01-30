@@ -19,8 +19,14 @@
   padding: auto;
   max-width: 10%;
 }
+.navbar-top > .navbar-top-logo {
+  margin-left: 2%;
+}
 
-.navbar-top > span {
+.navbar-top > a {
+  text-decoration: none;
+}
+.navbar-top span {
   font-size: 1.25rem;
   margin-left: 0.5rem;
   font-weight: 600;

@@ -27,9 +27,12 @@ function Navigation({ isLoaded, setIsLoaded }) {
 
   return (
     <nav className="navbar-top">
-      <LogoIcon loggedIn={!!sessionUser} />
-
-      <span className="project-name">BlockchainLords</span>
+      <NavLink className="navbar-top-logo" to="/">
+        <LogoIcon loggedIn={!!sessionUser} />
+      </NavLink>
+      <NavLink to="/">
+        <span className="project-name">BlockchainLords</span>
+      </NavLink>
 
       <ul>
         <li>{isLoaded && sessionLinks}</li>

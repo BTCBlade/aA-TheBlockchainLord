@@ -25,7 +25,7 @@ function ProfileButton({ user, setIsLoaded }) {
 
   const logout = (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout()).then((data) => setIsLoaded(false));
+    dispatch(sessionActions.logout());
   };
 
   return (
