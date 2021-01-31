@@ -2,6 +2,7 @@ import { fetch } from "./csrf";
 import { setwatchlistId } from "./loading";
 
 const LOAD = "watchlist/LOAD";
+const LOAD_LIVE_QUOTES = "watchlist/LOAD_LIVE_QUOTES";
 const ADD_ONE_ASSET = "watchlist/ADD_ONE_ASSET";
 const REMOVE_ONE_ASSET = "watchlist/REMOVE_ONE_ASSET";
 
@@ -10,6 +11,10 @@ const load = (watchlist) => ({
   payload: watchlist,
 });
 
+const loadLiveQuotes = (quotes) => ({
+  type: LOAD_LIVE_QUOTES,
+  payload: quotes,
+});
 const removeOneAsset = (newWatchlist) => ({
   type: REMOVE_ONE_ASSET,
   payload: newWatchlist,
@@ -36,6 +41,17 @@ export const getWatchlist = (user) => async (dispatch) => {
   await dispatch(load(retObj));
 };
 
+export const getLiveWatchlistQuotes = (watchlistId, watchlist) => async (
+  dispatch
+) => {
+  const res = await fetch(`/api/coinmarketcapAPI/watchlist/${watchlistId}`, {
+    method: "PATCH",
+    body: JSON.stringify(watchlist),
+  });
+  console.log(res.data);
+  dispatch(loadLiveQuotes(res.data));
+};
+
 export const removeOneFromWatchlist = (watchlistId, assetId) => async (
   dispatch
 ) => {
@@ -43,7 +59,6 @@ export const removeOneFromWatchlist = (watchlistId, assetId) => async (
     method: "DELETE",
     body: JSON.stringify({ assetId: assetId }),
   });
-  console.log(res);
   if (res.ok) {
     const res = await fetch(`/api/watchlists/${watchlistId}`);
     const retObj = {};
@@ -94,6 +109,13 @@ const watchlistReducer = (state = initialState, action) => {
     }
     case ADD_ONE_ASSET: {
       newState = Object.assign({}, { ...action.payload });
+      return newState;
+    }
+    case LOAD_LIVE_QUOTES: {
+      newState = Object.assign({}, state);
+      for (let key in newState) {
+        newState[key].quote = action.payload[newState[key].cmcId].quote;
+      }
       return newState;
     }
     default:

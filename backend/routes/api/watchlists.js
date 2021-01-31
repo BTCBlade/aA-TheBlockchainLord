@@ -1,5 +1,10 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const fetch = require("node-fetch");
+
+const { apiKeys } = require("../../config");
+
+const { coinmarketcapKey } = apiKeys;
 
 const db = require("../../db/models");
 
@@ -23,7 +28,7 @@ router.get(
 
 //Delete one asset from one watchlist
 router.delete(
-  "/:watchlistId/",
+  "/:watchlistId(\\d+)/",
   asyncHandler(async (req, res) => {
     const assetId = req.body.assetId;
     const watchlistId = parseInt(req.params.watchlistId, 10);
@@ -41,7 +46,7 @@ router.delete(
 
 //Add one asset to one watchlist
 router.post(
-  "/:watchlistId/",
+  "/:watchlistId(\\d+)/",
   asyncHandler(async (req, res) => {
     const watchlistId = parseInt(req.params.watchlistId, 10);
     const assetId = req.body.assetId;
@@ -62,20 +67,4 @@ router.post(
 //4. remove asset from watchlist with assetId
 //5. send back updated watchlist
 
-router.patch(
-  "/:id(\\d+)/",
-  asyncHandler(async (req, res) => {
-    const watchlistId = parseInt(req.params.id, 10);
-
-    const watchlist = await db.Watchlist.findByPk(watchlistId, {
-      include: {
-        model: db.Asset,
-      },
-    });
-
-    // Query joins table where releavant watchlistId and assetsId
-
-    return res.send("hello from update route");
-  })
-);
 module.exports = router;
