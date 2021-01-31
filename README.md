@@ -6,10 +6,8 @@ React-Redux-ExpressAPI-Sequelize-Postgres
 
 Featuring state of the art authentication, form validations and Full CRUD cycle in Watchlist and AssetsDetails redux react 
 
-[DataBase Schema](https://github.com/BTCBlade/aA-TheBlockchainLord/wiki/Database-Schema)
+[Relational DataBase Schema](https://github.com/BTCBlade/aA-TheBlockchainLord/wiki/Database-Schema)
 
-
-![Splashpage](https://drive.google.com/uc?export=view&id=1w8hUEHTG1Iz15bF1j7NrnuniD8ksNAPP)
 ![Signup Here!](https://drive.google.com/uc?export=view&id=1lVGE8DKMiGF3nVM7GcvkIjBLyXE44DNs)
 
 
