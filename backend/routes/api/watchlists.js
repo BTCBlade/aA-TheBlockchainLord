@@ -23,16 +23,38 @@ router.get(
 
 //Delete one asset from one watchlist
 router.delete(
-  "/:watchlistId/remove-asset/:assetId",
+  "/:watchlistId/remove-asset/",
   asyncHandler(async (req, res) => {
-    const assetId = parseInt(req.params.assetId, 10);
+    const assetId = req.body.assetId;
     const watchlistId = parseInt(req.params.watchlistId, 10);
 
-    console.log("assetId ", assetId, " watchlistId ", watchlistId);
-    return res.send("hello from backend");
+    const watchlistasset = await db.WatchlistAssetsJoins.destroy({
+      where: {
+        watchlistId: watchlistId,
+        assetId: assetId,
+      },
+    });
+
+    return res.json(watchlistasset);
   })
 );
 
+//Add one asset to one watchlist
+router.post(
+  "/:watchlistId/add-asset",
+  asyncHandler(async (req, res) => {
+    const watchlistId = parseInt(req.params.watchlistId, 10);
+    const assetId = req.body.assetId;
+    const watchlistasset = await db.WatchlistAssetsJoins.findOrCreate({
+      where: {
+        watchlistId: watchlistId,
+        assetId: assetId,
+      },
+    });
+
+    return res.json(watchlistasset);
+  })
+);
 //Update watchlist
 //1. send assetId from frontend to here on body
 //2. destructure assetId from body

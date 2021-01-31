@@ -1,7 +1,8 @@
 import { fetch } from "./csrf";
+import { setwatchlistId } from "./loading";
 
 const LOAD = "watchlist/LOAD";
-const ADD_ONE = "watchlist/ADD_ONE";
+const ADD_ONE_ASSET = "watchlist/ADD_ONE_ASSET";
 const REMOVE_ONE_ASSET = "watchlist/REMOVE_ONE_ASSET";
 
 const load = (watchlist) => ({
@@ -9,24 +10,25 @@ const load = (watchlist) => ({
   payload: watchlist,
 });
 
-const addOne = (watchlist) => ({
-  type: ADD_ONE,
-  payload: watchlist,
+const removeOneAsset = (newWatchlist) => ({
+  type: REMOVE_ONE_ASSET,
+  payload: newWatchlist,
 });
 
-const removeOneAsset = (watchlist) => ({
-  type: REMOVE_ONE_ASSET,
-  payload: watchlist,
+const addOneAsset = (newWatchlist) => ({
+  type: ADD_ONE_ASSET,
+  payload: newWatchlist,
 });
 
 export const getWatchlist = (user) => async (dispatch) => {
   const responseUser = await fetch(`/api/users/${user.id}`);
 
   const watchlistId = responseUser.data.Watchlists[0].id;
+  dispatch(setwatchlistId(watchlistId));
 
   const res = await fetch(`/api/watchlists/${watchlistId}`);
 
-  let retObj = {};
+  const retObj = {};
   res.data.Assets.forEach((asset) => {
     retObj[asset.id] = asset;
   });
@@ -37,14 +39,44 @@ export const getWatchlist = (user) => async (dispatch) => {
 export const removeOneFromWatchlist = (watchlistId, assetId) => async (
   dispatch
 ) => {
-  const res = await fetch(
-    `/api/watchlists/${watchlistId}/remove-asset/${assetId}`,
-    {
-      method: "DELETE",
-    }
-  );
+  const res = await fetch(`/api/watchlists/${watchlistId}/remove-asset/`, {
+    method: "DELETE",
+    body: JSON.stringify({ assetId: assetId }),
+  });
+  console.log(res);
+  if (res.ok) {
+    const res = await fetch(`/api/watchlists/${watchlistId}`);
+    const retObj = {};
+    res.data.Assets.forEach((asset) => {
+      retObj[asset.id] = asset;
+    });
+    dispatch(removeOneAsset(retObj));
+  } else {
+    throw Error("removeOneFromWatchlist error");
+  }
+};
+export const addOneToWatchlist = (watchlistId, assetId) => async (dispatch) => {
+  const res = await fetch(`/api/watchlists/${watchlistId}/add-asset/`, {
+    method: "POST",
+    body: JSON.stringify({ assetId: assetId }),
+  });
+  if (res.ok) {
+    if (res.data[1]) {
+      // Nothing was found so db created an entry
+      const res = await fetch(`/api/watchlists/${watchlistId}`);
+      const retObj = {};
+      res.data.Assets.forEach((asset) => {
+        retObj[asset.id] = asset;
+      });
 
-  dispatch(removeOneAsset({}));
+      dispatch(addOneAsset(retObj));
+    } else {
+      // db already had an entry do nothing?
+      return;
+    }
+  } else {
+    throw Error("addOneToWatchlist server sending back error");
+  }
 };
 
 const initialState = {};
@@ -57,7 +89,12 @@ const watchlistReducer = (state = initialState, action) => {
       return newState;
     }
     case REMOVE_ONE_ASSET: {
-      return state;
+      newState = Object.assign({}, { ...action.payload });
+      return newState;
+    }
+    case ADD_ONE_ASSET: {
+      newState = Object.assign({}, { ...action.payload });
+      return newState;
     }
     default:
       return state;

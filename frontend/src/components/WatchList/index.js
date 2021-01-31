@@ -6,21 +6,31 @@ export default function WatchList({ sessionUser }) {
   const dispatch = useDispatch();
   const assets = useSelector((state) => state.assets);
   const watchlist = useSelector((state) => state.watchlist);
+  const watchlistId = useSelector((state) => state.loading.watchlistId);
 
-  useEffect(() => {
-    dispatch(getWatchlist(sessionUser));
+  useEffect(async () => {
+    await dispatch(getWatchlist(sessionUser));
   }, [dispatch]);
 
-  const handleremoveFromWatchlist = (assetId) => {};
+  const handleremoveFromWatchlist = (assetId) => {
+    dispatch(removeOneFromWatchlist(watchlistId, assetId));
+  };
 
   return (
     <>
       {watchlist && (
         <ul>
           {Object.values(watchlist).map((asset) => {
-            <li>
-              <button>- </button> {asset.symbol} ={" "}
-            </li>;
+            const quote = assets[asset.id].quote;
+
+            return (
+              <li>
+                <button onClick={() => handleremoveFromWatchlist(asset.id)}>
+                  -{" "}
+                </button>{" "}
+                {asset.symbol} {quote.USD.price.toFixed(2)}
+              </li>
+            );
           })}
         </ul>
       )}

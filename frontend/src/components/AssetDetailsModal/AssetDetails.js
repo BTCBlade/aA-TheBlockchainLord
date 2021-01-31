@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { addOneToWatchlist } from "../../store/watchlist";
 import "./AssetDetails.css";
 
 export default function AssetDetails({ asset }) {
+  const dispatch = useDispatch();
+  const watchlistId = useSelector((state) => state.loading.watchlistId);
+  const handleAddToWatchlist = () => {
+    dispatch(addOneToWatchlist(watchlistId, asset.id));
+  };
   return (
     <>
       {asset && (
@@ -24,14 +31,16 @@ export default function AssetDetails({ asset }) {
                 <i className="fas fa-external-link-alt"></i>
               </a>
             </div>
+            <button onClick={handleAddToWatchlist}>Add to Watchlist</button>
+          </div>
+          <div className="assetDetails-body">
+            <p>{asset.assetDetails.description}</p>
             <div>
               Tags:
               <div>{asset.tags}</div>
             </div>
           </div>
-          <div className="assetDetails-body">
-            <p>{asset.assetDetails.description}</p>
-          </div>
+
           <div className="assetDetails-quote"></div>
         </div>
       )}

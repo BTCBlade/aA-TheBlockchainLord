@@ -3,3 +3,7 @@
   flex-direction: column;
   margin: auto;
 }
+.assetsDetails-container > .assetsDetails-header {
+  display: flex;
+  flex-direction: row;
+}
