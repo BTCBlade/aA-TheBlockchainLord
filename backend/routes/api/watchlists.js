@@ -5,7 +5,7 @@ const db = require("../../db/models");
 
 const router = express.Router();
 
-//Retrieve watchlist
+//Retrieve watchlists
 router.get(
   "/:id(\\d+)",
   asyncHandler(async (req, res) => {
@@ -18,6 +18,18 @@ router.get(
     });
 
     return res.send(watchlist);
+  })
+);
+
+//Delete one asset from one watchlist
+router.delete(
+  "/:watchlistId/remove-asset/:assetId",
+  asyncHandler(async (req, res) => {
+    const assetId = parseInt(req.params.assetId, 10);
+    const watchlistId = parseInt(req.params.watchlistId, 10);
+
+    console.log("assetId ", assetId, " watchlistId ", watchlistId);
+    return res.send("hello from backend");
   })
 );
 

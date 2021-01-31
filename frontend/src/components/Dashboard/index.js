@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import WatchListsContainer from "../WatchListsContainer";
+import WatchList from "../WatchList";
 import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
 
@@ -36,6 +36,10 @@ export default function Dashboard() {
             />
           </div>
           <div className="dashboard-rightside-container">
+            <div className="dashboard-portfolio">Portfolio</div>
+            <div className="dashboard-watchlists">
+              Watchlist <WatchList sessionUser={sessionUser} />
+            </div>
             <div className="dashboard-assetdetails-container">
               Asset Details
               <AssetDetails asset={assets[assetDetailsData.rank]} />

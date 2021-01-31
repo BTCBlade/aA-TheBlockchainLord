@@ -54,7 +54,6 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
   };
   //Handle row click and load assetDetails Display one layer up
   const handleRowClick = (row) => {
-    console.log(row);
     setAssetDetailsData(row);
   };
 

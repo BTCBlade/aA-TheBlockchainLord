@@ -1,4 +1,5 @@
 import React from "react";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -14,7 +15,9 @@ function Navigation({ isLoaded, setIsLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
+      <>
+        <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
+      </>
     );
   } else {
     sessionLinks = (

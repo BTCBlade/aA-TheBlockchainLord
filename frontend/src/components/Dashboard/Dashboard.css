@@ -5,3 +5,20 @@
 .dashboard-assetsdisplay-container {
   width: 42%;
 }
+
+.dashboard-rightside-container {
+  display: grid;
+  grid-template-areas:
+    "portfolio portfolio watchlists"
+    "portfolio portfolio watchlists"
+    "assetDetails assetDetails assetDetails";
+}
+.dashboard-rightside-container > .dashboard-portfolio {
+  grid-area: portfolio;
+}
+.dashboard-rightside-container > .dashboard-watchlists {
+  grid-area: watchlists;
+}
+.dashboard-rightside-container > .dashboard-assetdetails-container {
+  grid-area: assetDetails;
+}

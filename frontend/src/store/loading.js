@@ -9,7 +9,6 @@ export const setisAssetsLoaded = (isLoaded) => {
   };
 };
 export const setisWatchlistsLoaded = (isLoaded) => {
-  console.log("from setiswatchlistloaded", isLoaded);
   return {
     type: SET_IS_WATCHLISTS_LOADED,
     payload: isLoaded,

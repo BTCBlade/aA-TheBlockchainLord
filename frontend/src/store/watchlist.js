@@ -2,35 +2,49 @@ import { fetch } from "./csrf";
 
 const LOAD = "watchlist/LOAD";
 const ADD_ONE = "watchlist/ADD_ONE";
-const REMOVE_ONE = "watchlist/REMOVE_ONE";
+const REMOVE_ONE_ASSET = "watchlist/REMOVE_ONE_ASSET";
 
-const load = (watchlists) => ({
+const load = (watchlist) => ({
   type: LOAD,
-  payload: watchlists,
+  payload: watchlist,
 });
 
-const addOne = (asset) => ({
+const addOne = (watchlist) => ({
   type: ADD_ONE,
-  payload: asset,
+  payload: watchlist,
 });
 
-const removeOne = (asset) => ({
-  type: REMOVE_ONE,
-  payload: asset,
+const removeOneAsset = (watchlist) => ({
+  type: REMOVE_ONE_ASSET,
+  payload: watchlist,
 });
 
-export const getWatchlists = (user) => async (dispatch) => {
+export const getWatchlist = (user) => async (dispatch) => {
   const responseUser = await fetch(`/api/users/${user.id}`);
 
-  const watchlists = responseUser.data.Watchlists;
+  const watchlistId = responseUser.data.Watchlists[0].id;
 
-  //attach correct Assets in an array to watchlist
-  watchlists.forEach(async (watchlist) => {
-    const res = await fetch(`/api/watchlists/${watchlist.id}`);
-    watchlist.Assets = res.data.Assets;
+  const res = await fetch(`/api/watchlists/${watchlistId}`);
+
+  let retObj = {};
+  res.data.Assets.forEach((asset) => {
+    retObj[asset.id] = asset;
   });
 
-  dispatch(load(watchlists));
+  await dispatch(load(retObj));
+};
+
+export const removeOneFromWatchlist = (watchlistId, assetId) => async (
+  dispatch
+) => {
+  const res = await fetch(
+    `/api/watchlists/${watchlistId}/remove-asset/${assetId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  dispatch(removeOneAsset({}));
 };
 
 const initialState = {};
@@ -39,11 +53,11 @@ const watchlistReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign({}, state);
-      action.payload.forEach((watchlist) => {
-        newState[watchlist.id] = watchlist;
-      });
+      newState = Object.assign({ ...action.payload }, state);
       return newState;
+    }
+    case REMOVE_ONE_ASSET: {
+      return state;
     }
     default:
       return state;

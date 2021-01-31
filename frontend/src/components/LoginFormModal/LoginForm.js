@@ -18,6 +18,15 @@ function LoginForm({ setShowModal }) {
       }
     );
   };
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(
+      sessionActions.login({ credential: "demo@user.io", password: "password" })
+    ).catch((res) => {
+      if (res.data && res.data.errors) setErrors(res.data.errors);
+    });
+  };
 
   return (
     <form className="LoginForm" onSubmit={handleSubmit}>
@@ -56,6 +65,12 @@ function LoginForm({ setShowModal }) {
         </ul>
         <NavLink to="/signup" onClick={() => setShowModal(false)}>
           Make New Account
+        </NavLink>
+        <NavLink
+          to="/dashboard"
+          onClick={(e) => demoSubmit(e) && setShowModal(false)}
+        >
+          Demo
         </NavLink>
       </div>
     </form>

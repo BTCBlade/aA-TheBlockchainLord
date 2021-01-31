@@ -43,6 +43,9 @@ export default function Footer() {
             <div className="footer-img-container">
               <img src="/technologies/expressjs.png"></img>
             </div>
+            <div className="footer-img-container">
+              <img src="/technologies/postgresql-logo.png"></img>
+            </div>
           </div>
         </div>
       </footer>
