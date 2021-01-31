@@ -23,7 +23,7 @@ router.get(
 
 //Delete one asset from one watchlist
 router.delete(
-  "/:watchlistId/remove-asset/",
+  "/:watchlistId/",
   asyncHandler(async (req, res) => {
     const assetId = req.body.assetId;
     const watchlistId = parseInt(req.params.watchlistId, 10);
@@ -41,7 +41,7 @@ router.delete(
 
 //Add one asset to one watchlist
 router.post(
-  "/:watchlistId/add-asset",
+  "/:watchlistId/",
   asyncHandler(async (req, res) => {
     const watchlistId = parseInt(req.params.watchlistId, 10);
     const assetId = req.body.assetId;

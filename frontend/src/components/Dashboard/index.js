@@ -29,19 +29,20 @@ export default function Dashboard() {
       {assets && (
         <div className="dashboard-container">
           <div className="dashboard-assetsdisplay-container">
-            All Assets
+            <h2>All Assets</h2>
             <AssetsDisplay
               setAssetDetailsData={setAssetDetailsData}
               className="dashboard-assetsdisplay"
             />
           </div>
           <div className="dashboard-rightside-container">
-            <div className="dashboard-portfolio">Portfolio</div>
+            <div className="dashboard-portfolio">
+              <h5>Portfolio</h5>
+            </div>
             <div className="dashboard-watchlists">
-              Watchlist <WatchList sessionUser={sessionUser} />
+              <h2>Watchlist</h2> <WatchList sessionUser={sessionUser} />
             </div>
             <div className="dashboard-assetdetails-container">
-              Asset Details
               <AssetDetails asset={assets[assetDetailsData.rank]} />
             </div>
           </div>

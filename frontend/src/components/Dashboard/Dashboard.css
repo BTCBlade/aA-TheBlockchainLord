@@ -5,6 +5,9 @@
 .dashboard-assetsdisplay-container {
   width: 42%;
 }
+.dashboard-assetsdisplay-container > h2 {
+  margin-left: 3%;
+}
 
 .dashboard-rightside-container {
   display: grid;
@@ -12,6 +15,8 @@
     "portfolio portfolio watchlists"
     "portfolio portfolio watchlists"
     "assetDetails assetDetails assetDetails";
+  grid-template-rows: 6rem 6rem 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .dashboard-rightside-container > .dashboard-portfolio {
   grid-area: portfolio;

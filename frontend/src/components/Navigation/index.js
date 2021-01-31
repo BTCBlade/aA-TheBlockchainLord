@@ -36,7 +36,7 @@ function Navigation({ isLoaded, setIsLoaded }) {
       <NavLink to="/">
         <span className="project-name">BlockchainLords</span>
       </NavLink>
-
+      {sessionUser && <div className="searchbar-container"></div>}
       <ul>
         <li>{isLoaded && sessionLinks}</li>
       </ul>

@@ -16,23 +16,23 @@ export default function AssetDetails({ asset }) {
       {asset && (
         <div className="assetsDetails-container">
           <div className="assetsDetails-header">
-            <div>
-              <img src={asset.assetDetails.logo}></img>
-              <h3>{asset.name}</h3>
-              <h6>{asset.symbol}</h6>
-            </div>
-            <div>
-              <a
-                href={`https://www.reddit.com/r/${asset.assetDetails.subreddit}`}
-              >
-                <i className="fab fa-reddit-alien"></i>
-              </a>
-              <a href={asset.assetDetails.urls.website[0]}>
-                <i className="fas fa-external-link-alt"></i>
-              </a>
-            </div>
-            <button onClick={handleAddToWatchlist}>Add to Watchlist</button>
+            <img src={asset.assetDetails.logo}></img>
+            <h3>{asset.name}</h3>
+            <h5>{asset.symbol}</h5>
           </div>
+
+          <div className="external-link-div">
+            <button onClick={handleAddToWatchlist}>Add to Watchlist</button>
+            <a
+              href={`https://www.reddit.com/r/${asset.assetDetails.subreddit}`}
+            >
+              <i className="fab fa-reddit-alien"></i>
+            </a>
+            <a href={asset.assetDetails.urls.website[0]}>
+              <i className="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+
           <div className="assetDetails-body">
             <p>{asset.assetDetails.description}</p>
             <div>

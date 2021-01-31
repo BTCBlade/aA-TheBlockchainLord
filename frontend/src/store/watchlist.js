@@ -39,7 +39,7 @@ export const getWatchlist = (user) => async (dispatch) => {
 export const removeOneFromWatchlist = (watchlistId, assetId) => async (
   dispatch
 ) => {
-  const res = await fetch(`/api/watchlists/${watchlistId}/remove-asset/`, {
+  const res = await fetch(`/api/watchlists/${watchlistId}/`, {
     method: "DELETE",
     body: JSON.stringify({ assetId: assetId }),
   });
@@ -56,7 +56,7 @@ export const removeOneFromWatchlist = (watchlistId, assetId) => async (
   }
 };
 export const addOneToWatchlist = (watchlistId, assetId) => async (dispatch) => {
-  const res = await fetch(`/api/watchlists/${watchlistId}/add-asset/`, {
+  const res = await fetch(`/api/watchlists/${watchlistId}/`, {
     method: "POST",
     body: JSON.stringify({ assetId: assetId }),
   });

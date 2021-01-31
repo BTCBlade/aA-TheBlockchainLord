@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import cron from "cron";
+
 import { getWatchlist, removeOneFromWatchlist } from "../../store/watchlist";
+import "./WatchList.css";
 
 export default function WatchList({ sessionUser }) {
   const dispatch = useDispatch();
@@ -10,6 +13,16 @@ export default function WatchList({ sessionUser }) {
 
   useEffect(async () => {
     await dispatch(getWatchlist(sessionUser));
+    // const job = new cron.CronJob(
+    //   "* * * * * *",
+    //   function () {
+    //     console.log("You will see this message every second");
+    //   },
+    //   null,
+    //   true,
+    //   "America/Los_Angeles"
+    // );
+    // job.start();
   }, [dispatch]);
 
   const handleremoveFromWatchlist = (assetId) => {

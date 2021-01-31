@@ -1,9 +1,37 @@
-.assetsDetails-container {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
+.grid-container {
+  margin: 2%;
 }
-.assetsDetails-container > .assetsDetails-header {
-  display: flex;
-  flex-direction: row;
+
+.assetsDetails-container {
+  display: grid;
+  grid-template-areas:
+    "header . . . ."
+    "header external . . ."
+    "body body body body body"
+    "body body body body body";
+  justify-items: center;
+  grid-template-rows: 5rem 5rem 5rem 5rem;
+  grid-template-columns: 7rem 12rem 1fr 1fr 1fr;
+  margin: 2%;
+}
+.assetsDetails-header {
+  grid-area: header;
+  margin-left: 1rem;
+}
+.external-link-div {
+  grid-area: external;
+  align-self: end;
+  margin-bottom: 1rem;
+}
+.external-link-div > a {
+  margin: 0.2rem;
+}
+.addwatchlist {
+  grid-area: addwatchlist;
+}
+
+.assetDetails-body {
+  grid-area: body;
+  font-size: 0.8rem;
+  margin-left: 1rem;
 }
