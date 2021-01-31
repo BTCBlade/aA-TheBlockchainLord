@@ -1,4 +1,4 @@
-# **Welcome to [TheBlockchainLord](https://aa-theblockchainlord.herokuapp.com/)!**
+# **Welcome to the [BlockchainLords](https://aa-theblockchainlord.herokuapp.com/) github repo!**
 
 [Live Heroku Link](https://aa-theblockchainlord.herokuapp.com/)
 One week solo project done at a/A
