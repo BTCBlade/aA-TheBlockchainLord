@@ -21,7 +21,9 @@ export default function AssetDetails({ asset }) {
           </div>
 
           <div className="external-link-div">
-            <button onClick={handleAddToWatchlist}>Add to Watchlist</button>
+            <button className="redux-button" onClick={handleAddToWatchlist}>
+              Add to Watchlist
+            </button>
             <a
               href={`https://www.reddit.com/r/${asset.assetDetails.subreddit}`}
             >

@@ -40,7 +40,11 @@ export default function Dashboard() {
               <h5>Portfolio</h5>
             </div>
             <div className="dashboard-watchlists">
-              <h2>Watchlist</h2> <WatchList sessionUser={sessionUser} />
+              <h2>Watchlist</h2>{" "}
+              <WatchList
+                className="dashboard-watchlist"
+                sessionUser={sessionUser}
+              />
             </div>
             <div className="dashboard-assetdetails-container">
               <AssetDetails asset={assets[assetDetailsData.rank]} />

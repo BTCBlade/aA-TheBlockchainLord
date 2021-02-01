@@ -2,6 +2,18 @@
   display: flex;
   flex-direction: row;
 }
+
+.redux-button {
+  border-radius: 1rem;
+  border: solid 1px;
+  border-color: rgb(90, 90, 102);
+}
+.redux-button:hover {
+  background-color: #7a7963;
+  color: white;
+  cursor: pointer;
+}
+
 .dashboard-assetsdisplay-container {
   width: 42%;
 }

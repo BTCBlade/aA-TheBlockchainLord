@@ -44,7 +44,10 @@ export default function WatchList({ sessionUser }) {
 
             return (
               <li>
-                <button onClick={() => handleremoveFromWatchlist(asset.id)}>
+                <button
+                  className="redux-button"
+                  onClick={() => handleremoveFromWatchlist(asset.id)}
+                >
                   -{" "}
                 </button>{" "}
                 {asset.symbol} {quote.USD.price.toFixed(2)}

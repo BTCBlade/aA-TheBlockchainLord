@@ -9,6 +9,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import { CronJob } from "cron";
 
 import { getAssetsLiveQuotes } from "../../store/assets";
 import "./AssetsDisplay.css";
@@ -63,11 +64,21 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
   const handleUpdateClick = () => {
     dispatch(getAssetsLiveQuotes(assets));
   };
+  const handleAutoDataClick = () => {
+    // const job = new CronJob(
+    //   "* * * * * *",
+    //   function () {
+    //     console.log("You will see this message every second");
+    //   },
+    //   null,
+    //   true,
+    //   "America/Los_Angeles"
+    // );
+    // job.start();
+    setInterval(() => dispatch(getAssetsLiveQuotes(assets)), 61000);
+  };
   let assetsArr;
-  // useEffect(() => {
-  //   assetsArr = Object.values(assets);
-  //   console.log(assetsArr);
-  // }, [assets]);
+
   assetsArr = Object.values(assets);
   const classes = useStyles();
   const rows = assetsArr.map((asset) => {
@@ -85,7 +96,12 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
-        <button onClick={handleUpdateClick}>Update Data</button>
+        <button className="redux-button" onClick={handleUpdateClick}>
+          Update Data
+        </button>
+        <button className="redux-button" onClick={handleAutoDataClick}>
+          Auto Update
+        </button>
         <Table aria-label="sticky table">
           <TableHead>
             <TableRow>
