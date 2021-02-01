@@ -49,7 +49,8 @@ export default function WatchList({ sessionUser }) {
                   onClick={() => handleremoveFromWatchlist(asset.id)}
                 >
                   -{" "}
-                </button>{" "}
+                </button>
+                {"  "}
                 {asset.symbol} {quote.USD.price.toFixed(2)}
               </li>
             );

@@ -8,7 +8,9 @@ export default function Footer() {
       <footer className="footer-container">
         <div className="footer-left">
           <h5>About</h5>
-          <p>My first full stack project done at App Academy in one week!</p>
+          <p>
+            My first full stack solo project done at App Academy in one week!
+          </p>
         </div>
 
         <div className="footer-center">

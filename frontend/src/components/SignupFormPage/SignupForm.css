@@ -1,6 +1,8 @@
 .signup-page-container {
   display: flex;
   flex-direction: row;
+  margin-bottom: 3%;
+  margin-top: 3%;
 }
 
 .signup-form {
