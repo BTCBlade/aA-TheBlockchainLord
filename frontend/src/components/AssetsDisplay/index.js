@@ -10,7 +10,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
-import { getAllAssets } from "../../store/assets";
+import { getAssetsLiveQuotes } from "../../store/assets";
 import "./AssetsDisplay.css";
 
 const columns = [
@@ -44,6 +44,10 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
 
+  useEffect(() => {
+    //await dispatch(getAssetsLiveQuotes(assets));
+  }, [dispatch]);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -56,7 +60,9 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
   const handleRowClick = (row) => {
     setAssetDetailsData(row);
   };
-
+  const handleUpdateClick = () => {
+    dispatch(getAssetsLiveQuotes(assets));
+  };
   let assetsArr;
   // useEffect(() => {
   //   assetsArr = Object.values(assets);
@@ -79,6 +85,7 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
+        <button onClick={handleUpdateClick}>Update Data</button>
         <Table aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -116,7 +123,11 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
                       } else {
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            <img className="logo-img" src={value}></img>
+                            <img
+                              className="logo-img"
+                              alt="logo"
+                              src={value}
+                            ></img>
                           </TableCell>
                         );
                       }

@@ -1,5 +1,4 @@
 import React from "react";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";

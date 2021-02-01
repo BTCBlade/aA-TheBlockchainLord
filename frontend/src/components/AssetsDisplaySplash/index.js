@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -10,7 +10,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 
-import { getAllAssets } from "../../store/assets";
 import "./AssetsDisplaySplash.css";
 
 const columns = [
@@ -106,7 +105,11 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
                       } else {
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            <img className="logo-img" src={value}></img>
+                            <img
+                              className="logo-img"
+                              alt="logo"
+                              src={value}
+                            ></img>
                           </TableCell>
                         );
                       }

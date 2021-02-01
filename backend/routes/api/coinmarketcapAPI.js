@@ -9,8 +9,39 @@ const { apiKeys } = require("../../config");
 
 const { coinmarketcapKey } = apiKeys;
 
+//AssetsDisplay Live Quotes
+router.patch(
+  "/assets/livequotes",
+  asyncHandler(async (req, res) => {
+    const cmcIdArr = Object.values(req.body).map((asset) => [
+      asset.id,
+      asset.cmcId,
+    ]);
+    //prep external API request URL string
+    let apiRequestStr =
+      "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=";
+    for (let i = 0; i < cmcIdArr.length; i++) {
+      if (i < cmcIdArr.length - 1) {
+        apiRequestStr += cmcIdArr[i][1].toString() + ",";
+      } else {
+        apiRequestStr += cmcIdArr[i][1].toString();
+      }
+    }
+    const apiRes = await fetch(apiRequestStr, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-CMC_PRO_API_KEY": coinmarketcapKey,
+      },
+    });
+    const apiData = await apiRes.json();
+    if (apiData.status.error_code === 0) {
+      res.json(apiData.data);
+    } else {
+      throw Error("external api call failure");
+    }
+  })
+);
 //WatchlistAssets Live Quotes
-
 router.patch(
   "/watchlist/:watchlistId(\\d+)/",
   asyncHandler(async (req, res) => {
@@ -19,7 +50,6 @@ router.patch(
       asset.id,
       asset.cmcId,
     ]);
-    console.log(cmcIdArr);
     //prep external API reqeust URL string
     let apiRequestStr =
       "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=";
@@ -37,7 +67,6 @@ router.patch(
       },
     });
     const apiData = await apiRes.json();
-    console.log(apiData);
     if (apiData.status.error_code === 0) {
       res.json(apiData.data);
     } else {

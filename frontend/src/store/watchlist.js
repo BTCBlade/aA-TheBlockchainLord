@@ -48,7 +48,6 @@ export const getLiveWatchlistQuotes = (watchlistId, watchlist) => async (
     method: "PATCH",
     body: JSON.stringify(watchlist),
   });
-  console.log(res.data);
   dispatch(loadLiveQuotes(res.data));
 };
 

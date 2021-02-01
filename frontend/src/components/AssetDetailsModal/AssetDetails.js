@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { addOneToWatchlist } from "../../store/watchlist";
@@ -16,7 +15,7 @@ export default function AssetDetails({ asset }) {
       {asset && (
         <div className="assetsDetails-container">
           <div className="assetsDetails-header">
-            <img src={asset.assetDetails.logo}></img>
+            <img src={asset.assetDetails.logo} alt="Logo"></img>
             <h3>{asset.name}</h3>
             <h5>{asset.symbol}</h5>
           </div>

@@ -11,12 +11,12 @@ import "./WatchList.css";
 
 export default function WatchList({ sessionUser }) {
   const dispatch = useDispatch();
-  // const assets = useSelector((state) => state.assets);
+  const assets = useSelector((state) => state.assets);
   const watchlist = useSelector((state) => state.watchlist);
   const watchlistId = useSelector((state) => state.loading.watchlistId);
 
-  useEffect(async () => {
-    await dispatch(getWatchlist(sessionUser));
+  useEffect(() => {
+    dispatch(getWatchlist(sessionUser));
     //await dispatch(getLiveWatchlistQuotes(watchlistId, watchlist));
     //
     // const job = new cron.CronJob(
@@ -29,22 +29,18 @@ export default function WatchList({ sessionUser }) {
     //   "America/Los_Angeles"
     // );
     // job.start();
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   const handleremoveFromWatchlist = (assetId) => {
     dispatch(removeOneFromWatchlist(watchlistId, assetId));
-  };
-  const handleUpdate = () => {
-    dispatch(getLiveWatchlistQuotes(watchlistId, watchlist));
   };
 
   return (
     <>
       {watchlist && (
         <ul>
-          <button onClick={handleUpdate}>UpdateButton</button>
           {Object.values(watchlist).map((asset) => {
-            const quote = asset.quote;
+            const quote = assets[asset.id].quote;
 
             return (
               <li>

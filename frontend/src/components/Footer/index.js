@@ -29,22 +29,25 @@ export default function Footer() {
           <h5>Technologies Used</h5>
           <div className="footer-technologies-used-container">
             <div className="footer-img-container">
-              <img src="/technologies/icons8-nodejs-96.png"></img>
+              <img alt="pic" src="/technologies/icons8-nodejs-96.png"></img>
             </div>
             <div className="footer-img-container">
-              <img src="/technologies/heroku_logo_icon_169035.png"></img>
+              <img
+                alt="pic"
+                src="/technologies/heroku_logo_icon_169035.png"
+              ></img>
             </div>
             <div className="footer-img-container">
-              <img src="/technologies/redux-logo.png"></img>
+              <img alt="pic" src="/technologies/redux-logo.png"></img>
             </div>
             <div className="footer-img-container">
-              <img src="/technologies/react-logo.png"></img>
+              <img alt="pic" src="/technologies/react-logo.png"></img>
             </div>
             <div className="footer-img-container">
-              <img src="/technologies/expressjs.png"></img>
+              <img alt="pic" src="/technologies/expressjs.png"></img>
             </div>
             <div className="footer-img-container">
-              <img src="/technologies/postgresql-logo.png"></img>
+              <img alt="pic" src="/technologies/postgresql-logo.png"></img>
             </div>
           </div>
         </div>
