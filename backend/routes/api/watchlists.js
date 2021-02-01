@@ -10,6 +10,19 @@ const db = require("../../db/models");
 
 const router = express.Router();
 
+//Create a new user's Wactchlists table entry
+router.post(
+  "",
+  asyncHandler(async (req, res) => {
+    const watchlist = await db.Watchlist.create({
+      userId: req.body.userId,
+      name: req.body.name,
+    });
+    console.log(watchlist);
+    return res.json({ watchlist });
+  })
+);
+
 //Retrieve watchlists
 router.get(
   "/:id(\\d+)",

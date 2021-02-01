@@ -1,4 +1,5 @@
 import { fetch } from "./csrf";
+import { setwatchlistId } from "./loading";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
@@ -45,7 +46,15 @@ export const signup = (formData) => async (dispatch) => {
       password,
     }),
   });
+  const createWatchlistRes = await fetch("/api/watchlists", {
+    method: "POST",
+    body: JSON.stringify({
+      userId: response.data.user.id,
+      name: `${username}'s watchlists`,
+    }),
+  });
   dispatch(setUser(response.data.user));
+  dispatch(setwatchlistId(createWatchlistRes.data.watchlist.id));
   return response;
 };
 
