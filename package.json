@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/BTCBlade/aA-TheBlockchainLord/issues"
   },
-  "homepage": "https://github.com/BTCBlade/aA-TheBlockchainLord#readme"
+  "homepage": "https://github.com/BTCBlade/aA-TheBlockchainLord#readme",
+  "dependencies": {
+    "truffle": "^5.1.66"
+  }
 }

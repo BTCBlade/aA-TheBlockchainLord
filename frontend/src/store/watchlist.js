@@ -96,10 +96,10 @@ export const addOneToWatchlist = (watchlistId, assetId) => async (dispatch) => {
 const initialState = {};
 
 const watchlistReducer = (state = initialState, action) => {
-  let newState;
+  let newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case LOAD: {
-      newState = Object.assign({ ...action.payload }, state);
+      newState = Object.assign({ ...action.payload }, newState);
       return newState;
     }
     case REMOVE_ONE_ASSET: {
@@ -111,7 +111,6 @@ const watchlistReducer = (state = initialState, action) => {
       return newState;
     }
     case LOAD_LIVE_QUOTES: {
-      newState = Object.assign({}, state);
       for (let key in newState) {
         newState[key].quote = action.payload[newState[key].cmcId].quote;
       }

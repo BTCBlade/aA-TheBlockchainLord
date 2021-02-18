@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import PublicHomePage from "./components/PublicHomePage";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
+import Web3Demo from "./components/Web3Demo";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +37,9 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/test"></Route>
+          <Route exact path="/web3demo">
+            <Web3Demo />
+          </Route>
         </Switch>
       )}
       <Footer />

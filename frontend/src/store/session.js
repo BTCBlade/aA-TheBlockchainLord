@@ -68,14 +68,12 @@ export const logout = () => async (dispatch) => {
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-  let newState;
+  const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case SET_USER:
-      newState = Object.assign({}, state);
       newState.user = action.payload;
       return newState;
     case REMOVE_USER:
-      newState = Object.assign({}, state);
       newState.user = null;
       return newState;
     default:

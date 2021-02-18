@@ -31,25 +31,21 @@ export const setisPortfolioLoaded = (isLoaded) => {
 const initialState = { isWatchlistsLoaded: false, isAssetsLoaded: false };
 
 const loadingReducer = (state = initialState, action) => {
-  let newState;
+  const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case SET_WATCHLISTID: {
-      newState = Object.assign({}, state);
       newState.watchlistId = action.payload;
       return newState;
     }
     case SET_IS_ASSETS_LOADED: {
-      newState = Object.assign({}, state);
       newState.isAssetsLoaded = action.payload;
       return newState;
     }
     case SET_IS_WATCHLISTS_LOADED: {
-      newState = Object.assign({}, state);
       newState.isWatchlistsLoaded = action.payload;
       return newState;
     }
     case SET_IS_PORTFOLIO_LOADED: {
-      newState = Object.assign({}, state);
       newState.isPortfolioLoaded = action.payload;
       return newState;
     }

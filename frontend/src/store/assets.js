@@ -33,17 +33,15 @@ export const getAssetsLiveQuotes = (assets) => async (dispatch) => {
 
 const initialState = {};
 const assetsReducer = (state = initialState, action) => {
-  let newState;
+  const newState = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case LOAD_ALL: {
-      newState = Object.assign({}, state);
       action.payload.forEach((asset) => {
         newState[asset.id] = asset;
       });
       return newState;
     }
     case LOAD_LIVE_QUOTES: {
-      newState = Object.assign({}, state);
       for (let key in newState) {
         newState[key].quote = action.payload[newState[key].cmcId].quote;
       }
