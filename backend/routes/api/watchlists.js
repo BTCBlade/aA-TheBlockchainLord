@@ -10,7 +10,7 @@ const db = require("../../db/models");
 
 const router = express.Router();
 
-//Create a new user's Wactchlists table entry
+//Create a new user's Watchlists table entry
 router.post(
   "",
   asyncHandler(async (req, res) => {
@@ -18,7 +18,6 @@ router.post(
       userId: req.body.userId,
       name: req.body.name,
     });
-    console.log(watchlist);
     return res.json({ watchlist });
   })
 );

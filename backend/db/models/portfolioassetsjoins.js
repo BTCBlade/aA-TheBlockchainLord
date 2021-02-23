@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       portfolioId: DataTypes.INTEGER,
       assetId: DataTypes.INTEGER,
       quantityOfAsset: DataTypes.DECIMAL,
+      costAvg: DataTypes.DECIMAL,
     },
     {}
   );

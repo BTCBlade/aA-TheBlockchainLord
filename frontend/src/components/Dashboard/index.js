@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import WatchList from "../WatchList";
 import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
+import PortfolioDisplay from "../PortfolioDisplay";
 
 import "./Dashboard.css";
 
@@ -20,7 +21,6 @@ export default function Dashboard() {
     logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png",
     name: "Polkadot",
     price: "15.44",
-    rank: 4,
     symbol: "DOT",
   });
 
@@ -38,13 +38,10 @@ export default function Dashboard() {
           <div className="dashboard-rightside-container">
             <div className="dashboard-portfolio">
               <h5>Portfolio</h5>
+              <PortfolioDisplay className="portfolio-display" />
             </div>
             <div className="dashboard-watchlists">
-              <h2>Watchlist</h2>{" "}
-              <WatchList
-                className="dashboard-watchlist"
-                sessionUser={sessionUser}
-              />
+              <h2>Watchlist</h2> <WatchList className="dashboard-watchlist" />
             </div>
             <div className="dashboard-assetdetails-container">
               <AssetDetails asset={assets[assetDetailsData.rank]} />

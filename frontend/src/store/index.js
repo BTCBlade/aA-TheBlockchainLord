@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import loadingReducer from "./loading";
 import watchlistReducer from "./watchlist";
+import portfolioReducer from "./portfolio";
 
 import assetsReducer from "./assets";
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   loading: loadingReducer,
   watchlist: watchlistReducer,
   assets: assetsReducer,
+  portfolio: portfolioReducer,
 });
 
 let enhancer;

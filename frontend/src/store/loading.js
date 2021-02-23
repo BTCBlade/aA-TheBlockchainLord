@@ -2,6 +2,7 @@ const SET_IS_ASSETS_LOADED = "loading/setisAssetsLoaded";
 const SET_IS_WATCHLISTS_LOADED = "loading/setisWatchlistsLoaded";
 const SET_IS_PORTFOLIO_LOADED = "loading/setisPortfolioLoaded";
 const SET_WATCHLISTID = "loading/setwatchlistId";
+const SET_PORTFOLIOID = "loading/setportfolioId";
 
 export const setisAssetsLoaded = (isLoaded) => {
   return {
@@ -13,6 +14,13 @@ export const setwatchlistId = (watchlistId) => {
   return {
     type: SET_WATCHLISTID,
     payload: watchlistId,
+  };
+};
+
+export const setportfolioId = (portfolioId) => {
+  return {
+    type: SET_PORTFOLIOID,
+    payload: portfolioId,
   };
 };
 export const setisWatchlistsLoaded = (isLoaded) => {
@@ -35,6 +43,10 @@ const loadingReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_WATCHLISTID: {
       newState.watchlistId = action.payload;
+      return newState;
+    }
+    case SET_PORTFOLIOID: {
+      newState.portfolioId = action.payload;
       return newState;
     }
     case SET_IS_ASSETS_LOADED: {

@@ -4,6 +4,18 @@ const asyncHandler = require("express-async-handler");
 const db = require("../../db/models");
 const router = express.Router();
 
+//Create a new user's Portfolio
+router.post(
+  "",
+  asyncHandler(async (req, res) => {
+    const portfolio = await db.Portfolio.create({
+      createdByUserId: req.body.userId,
+      name: req.body.name,
+    });
+    return res.json({ portfolio });
+  })
+);
+
 //Retrieve portfolio
 router.get(
   "/:id(\\d+)",

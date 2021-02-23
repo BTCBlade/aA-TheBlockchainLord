@@ -1,5 +1,5 @@
 import { fetch } from "./csrf";
-import { setwatchlistId } from "./loading";
+import { setwatchlistId, setportfolioId } from "./loading";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
@@ -53,8 +53,16 @@ export const signup = (formData) => async (dispatch) => {
       name: `${username}'s watchlists`,
     }),
   });
+  const createPortfolioRes = await fetch("/api/portfolios", {
+    method: "POST",
+    body: JSON.stringify({
+      userId: response.data.user.id,
+      name: `${username}'s portfolio`,
+    }),
+  });
   dispatch(setUser(response.data.user));
   dispatch(setwatchlistId(createWatchlistRes.data.watchlist.id));
+  dispatch(setportfolioId(createPortfolioRes.data.portfolio.id));
   return response;
 };
 

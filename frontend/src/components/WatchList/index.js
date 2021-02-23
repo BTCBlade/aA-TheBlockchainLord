@@ -9,8 +9,9 @@ import {
 } from "../../store/watchlist";
 import "./WatchList.css";
 
-export default function WatchList({ sessionUser }) {
+export default function WatchList() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
   const watchlist = useSelector((state) => state.watchlist);
   const watchlistId = useSelector((state) => state.loading.watchlistId);

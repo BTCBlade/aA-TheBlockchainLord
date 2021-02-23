@@ -17,20 +17,23 @@ module.exports = {
         portfolioId: 1,
         assetId: 1,
         quantityOfAsset: 1.524356,
+        costAvg: 12000,
       },
       {
         portfolioId: 1,
         assetId: 2,
         quantityOfAsset: 52.81,
+        costAvg: 500,
       },
       {
         portfolioId: 1,
-        assetId: 2,
-        quantityOfAsset: 1.241231455566,
+        assetId: 4,
+        quantityOfAsset: 1000,
+        costAvg: 5,
       },
-      { portfolioId: 2, assetId: 3, quantityOfAsset: 512313141.11 },
-      { portfolioId: 2, assetId: 4, quantityOfAsset: 42 },
-      { portfolioId: 3, assetId: 2, quantityOfAsset: 8.5 },
+      { portfolioId: 2, assetId: 3, quantityOfAsset: 512341.11, costAvg: 1 },
+      { portfolioId: 2, assetId: 4, quantityOfAsset: 42, costAvg: 15 },
+      { portfolioId: 3, assetId: 2, quantityOfAsset: 8.5, costAvg: 1500 },
     ]);
   },
 
