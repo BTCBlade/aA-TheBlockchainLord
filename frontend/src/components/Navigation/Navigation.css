@@ -34,8 +34,6 @@
 
 .navbar-top > ul {
   list-style-type: none;
-  margin-left: auto;
-  margin-right: 3%;
 }
 .logout-button {
   cursor: pointer;

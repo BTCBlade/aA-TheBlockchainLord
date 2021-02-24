@@ -1,5 +1,5 @@
 import { fetch } from "./csrf";
-import { setportfolioId } from "./loading";
+import { setportfolioId, setportfoliometa } from "./loading";
 
 const LOAD = "portfolio/LOAD";
 
@@ -23,17 +23,19 @@ export const getPortfolio = (user) => async (dispatch) => {
       cmcId: asset.cmcId,
       symbol: asset.symbol,
       portfolioId: asset.PortfolioAssetsJoins.portfolioId,
-      quantityOfAsset: asset.PortfolioAssetsJoins.quantityOfAsset,
-      costAvg: asset.PortfolioAssetsJoins.costAvg,
+      quantityOfAsset: parseFloat(asset.PortfolioAssetsJoins.quantityOfAsset),
+      costAvg: parseFloat(asset.PortfolioAssetsJoins.costAvg),
+      history: asset.PortfolioAssetsJoins.history.map((ele) => JSON.parse(ele)),
     };
   });
 
-  retObj["meta"] = {};
-  retObj["meta"]["createdAt"] = res.data.createdAt;
-  retObj["meta"]["createdByUserId"] = res.data.createdByUserId;
-  retObj["meta"]["followedByUsers"] = res.data.followedByUsers;
-  retObj["meta"]["id"] = res.data.id;
-  retObj["meta"]["name"] = res.data.name;
+  const metaObj = {};
+  metaObj["createdAt"] = res.data.createdAt;
+  metaObj["createdByUserId"] = res.data.createdByUserId;
+  metaObj["followedByUsers"] = res.data.followedByUsers;
+  metaObj["id"] = res.data.id;
+  metaObj["name"] = res.data.name;
+  await dispatch(setportfoliometa(metaObj));
 
   await dispatch(load(retObj));
 };

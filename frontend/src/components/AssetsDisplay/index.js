@@ -9,6 +9,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import AutoCompleteSearch from "../AutoCompleteSearch";
 import { CronJob } from "cron";
 
 import { getAssetsLiveQuotes } from "../../store/assets";
@@ -102,6 +103,7 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
         <button className="redux-button" onClick={handleAutoDataClick}>
           Auto Update
         </button>
+        <AutoCompleteSearch setAssetDetailsData={setAssetDetailsData} />
         <Table aria-label="sticky table">
           <TableHead>
             <TableRow>

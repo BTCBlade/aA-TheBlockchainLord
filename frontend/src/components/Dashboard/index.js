@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import WatchList from "../WatchList";
 import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
-import PortfolioDisplay from "../PortfolioDisplay";
+import PortfolioDisplay from "../PortfolioPage";
 
 import "./Dashboard.css";
 
@@ -38,7 +38,6 @@ export default function Dashboard() {
           <div className="dashboard-rightside-container">
             <div className="dashboard-portfolio">
               <h5>Portfolio</h5>
-              <PortfolioDisplay className="portfolio-display" />
             </div>
             <div className="dashboard-watchlists">
               <h2>Watchlist</h2> <WatchList className="dashboard-watchlist" />

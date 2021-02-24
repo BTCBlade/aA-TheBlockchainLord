@@ -3,6 +3,7 @@ const SET_IS_WATCHLISTS_LOADED = "loading/setisWatchlistsLoaded";
 const SET_IS_PORTFOLIO_LOADED = "loading/setisPortfolioLoaded";
 const SET_WATCHLISTID = "loading/setwatchlistId";
 const SET_PORTFOLIOID = "loading/setportfolioId";
+const SET_PORTFOLIO_META = "loading/setportfoliometa";
 
 export const setisAssetsLoaded = (isLoaded) => {
   return {
@@ -35,6 +36,12 @@ export const setisPortfolioLoaded = (isLoaded) => {
     payload: isLoaded,
   };
 };
+export const setportfoliometa = (metaObj) => {
+  return {
+    type: SET_PORTFOLIO_META,
+    payload: metaObj,
+  };
+};
 
 const initialState = { isWatchlistsLoaded: false, isAssetsLoaded: false };
 
@@ -59,6 +66,10 @@ const loadingReducer = (state = initialState, action) => {
     }
     case SET_IS_PORTFOLIO_LOADED: {
       newState.isPortfolioLoaded = action.payload;
+      return newState;
+    }
+    case SET_PORTFOLIO_META: {
+      newState.portfoliometa = action.payload;
       return newState;
     }
     default:

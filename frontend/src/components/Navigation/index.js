@@ -5,6 +5,7 @@ import ProfileButton from "./ProfileButton";
 import SignUpButton from "../SignUpButton";
 import LoginFormModal from "../LoginFormModal";
 import LogoIcon from "../LogoIcon";
+import AutoCompleteSearch from "../AutoCompleteSearch";
 
 import "./Navigation.css";
 
@@ -16,6 +17,7 @@ function Navigation({ isLoaded, setIsLoaded }) {
     sessionLinks = (
       <>
         <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
+        <NavLink to="/portfolio">Portfolio</NavLink>
       </>
     );
   } else {
@@ -35,7 +37,6 @@ function Navigation({ isLoaded, setIsLoaded }) {
       <NavLink to="/">
         <span className="project-name">BlockchainLords</span>
       </NavLink>
-      {sessionUser && <div className="searchbar-container"></div>}
       <ul>
         <li>{isLoaded && sessionLinks}</li>
       </ul>

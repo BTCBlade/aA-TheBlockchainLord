@@ -10,6 +10,7 @@ import PublicHomePage from "./components/PublicHomePage";
 import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 import Web3Demo from "./components/Web3Demo";
+import PortfolioPage from "./components/PortfolioPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/dashboard">
             {sessionUser ? <Dashboard /> : <Redirect to="/" />}
+          </Route>
+          <Route exact path="/portfolio">
+            {sessionUser ? <PortfolioPage /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
