@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import BuySellModal from "../BuySellModal";
 import { addOneToWatchlist } from "../../store/watchlist";
 import "./AssetDetails.css";
 
@@ -32,6 +33,10 @@ export default function AssetDetails({ asset }) {
             <a href={asset.assetDetails.urls.website[0]}>
               <i className="fas fa-external-link-alt"></i>
             </a>
+          </div>
+
+          <div className="buysell-btn">
+            <BuySellModal asset={asset} />
           </div>
 
           <div className="assetDetails-body">

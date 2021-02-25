@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import BuySellModal from "../../BuySellModal";
 
 const useRowStyles = makeStyles({
   root: {
@@ -25,6 +26,7 @@ const useRowStyles = makeStyles({
 });
 
 function createData(
+  assetId,
   logo,
   name,
   net,
@@ -35,6 +37,7 @@ function createData(
   history
 ) {
   return {
+    assetId,
     logo,
     name,
     net,
@@ -45,8 +48,8 @@ function createData(
     history,
   };
 }
-const handlePortfolioRowClick = (e) => {
-  alert("rowclicked");
+const handlePortfolioAssetClick = (assetId) => {
+  alert(`assetId ${assetId}`);
 };
 
 function Row(props) {
@@ -57,7 +60,7 @@ function Row(props) {
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
-        <TableCell>
+        <TableCell className="IconButton">
           <IconButton
             aria-label="expand row"
             size="small"
@@ -66,7 +69,11 @@ function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
+        <TableCell
+          onClick={() => handlePortfolioAssetClick(row.assetId)}
+          component="th"
+          scope="row"
+        >
           <img className="logo-img" alt="logo" src={row.logo}></img>
           {row.name}
         </TableCell>
@@ -149,6 +156,7 @@ export default function PortfolioTable() {
   const portfolio = useSelector((state) => state.portfolio);
 
   const rows = Object.values(portfolio).map((asset) => {
+    const assetId = asset.id;
     const logo = assets[asset.id].assetDetails.logo;
     const name = assets[asset.id].name + " " + asset.symbol;
     const currentPrice = assets[asset.id].quote.USD.price;
@@ -159,6 +167,7 @@ export default function PortfolioTable() {
     const percent_change_7d = assets[asset.id].quote.USD.percent_change_7d;
 
     return createData(
+      assetId,
       logo,
       name,
       net,

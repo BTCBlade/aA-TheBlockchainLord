@@ -4,10 +4,12 @@ import WatchList from "../WatchList";
 import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
 import PortfolioDisplay from "../PortfolioPage";
+import { getPortfolio } from "../../store/portfolio";
 
 import "./Dashboard.css";
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const assets = useSelector((state) => state.assets);
   const [assetDetailsData, setAssetDetailsData] = useState({
@@ -23,6 +25,10 @@ export default function Dashboard() {
     price: "15.44",
     symbol: "DOT",
   });
+
+  useEffect(() => {
+    dispatch(getPortfolio(sessionUser));
+  }, [dispatch]);
 
   return (
     <>

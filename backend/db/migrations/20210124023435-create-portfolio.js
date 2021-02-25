@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      cashUSD: {
+        type: Sequelize.DECIMAL,
+      },
       name: {
         allowNull: false,
         type: Sequelize.STRING(64),
@@ -26,12 +29,12 @@ module.exports = {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now")
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn("now")
+        defaultValue: Sequelize.fn("now"),
       },
     });
   },

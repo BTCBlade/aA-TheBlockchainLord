@@ -11,6 +11,7 @@ router.post(
     const portfolio = await db.Portfolio.create({
       createdByUserId: req.body.userId,
       name: req.body.name,
+      cashUSD: 10000,
     });
     return res.json({ portfolio });
   })
@@ -32,15 +33,62 @@ router.get(
   })
 );
 
-//Update Portfolio
+//Buying an Asset, 1. Deduct USD from Portfolio cashUSD, 2. add or update PortfolioAssetsJoins Entry
 router.put(
-  "/:id(\\d+)",
+  "/:id(\\d+)/buy",
   asyncHandler(async (req, res) => {
     const portfolioId = parseInt(req.params.id, 10);
-    const updateInfo = req.body;
-    console.log(req.body);
+    const assetId = req.body.assetId;
+    const amount = parseFloat(req.body.amount);
+    const priceUSD = parseFloat(req.body.priceUSD);
 
-    return res.send(req.body);
+    //deduct cashUSD balance
+    const portfolio = await db.Portfolio.findByPk(portfolioId);
+    const costInUSD = amount * priceUSD;
+    if (costInUSD > parseFloat(portfolio.cashUSD)) {
+      throw Error("Not enough cash USD in account");
+    } else {
+      portfolio.cashUSD = parseFloat(portfolio.cashUSD) - costInUSD;
+      console.log(portfolio);
+      await portfolio.save();
+    }
+
+    //2. add or update PortfolioAssetsJoins Entry
+    const PAJres = await db.PortfolioAssetsJoins.findOrCreate({
+      where: {
+        assetId: assetId,
+        portfolioId: portfolioId,
+      },
+    });
+    const PAJEntry = PAJres[0];
+    if (PAJEntry.quantityOfAsset) {
+      const oldAmount = parseFloat(PAJEntry.quantityOfAsset);
+      const newCostAvg =
+        (oldAmount * parseFloat(PAJEntry.costAvg) + amount * priceUSD) /
+        (oldAmount + amount);
+      PAJEntry.costAvg = newCostAvg;
+      PAJEntry.quantityOfAsset = oldAmount + amount;
+      const newHistoryEntry = JSON.stringify({
+        date: Date.parse(new Date()),
+        quantity: amount,
+        purchasePrice: priceUSD,
+      });
+      PAJEntry.history = [...PAJEntry.history, newHistoryEntry];
+      await PAJEntry.save();
+    } else {
+      PAJEntry.quantityOfAsset = amount;
+      PAJEntry.costAvg = priceUSD;
+      PAJEntry.history = [
+        JSON.stringify({
+          date: Date.parse(new Date()),
+          quantity: amount,
+          purchasePrice: priceUSD,
+        }),
+      ];
+      await PAJEntry.save();
+    }
+
+    return res.json(PAJEntry);
   })
 );
 

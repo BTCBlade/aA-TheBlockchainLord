@@ -18,6 +18,7 @@ function Navigation({ isLoaded, setIsLoaded }) {
       <>
         <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
         <NavLink to="/portfolio">Portfolio</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </>
     );
   } else {

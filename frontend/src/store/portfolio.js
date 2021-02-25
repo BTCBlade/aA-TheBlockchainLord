@@ -2,10 +2,20 @@ import { fetch } from "./csrf";
 import { setportfolioId, setportfoliometa } from "./loading";
 
 const LOAD = "portfolio/LOAD";
+const SELL_ASSET = "portfolio/SELL_ASSET";
+const BUY_ASSET = "portfolio/BUY_ASSET";
 
 const load = (portfolio) => ({
   type: LOAD,
   payload: portfolio,
+});
+const sellAsset = () => ({
+  type: SELL_ASSET,
+  payload: "notsure",
+});
+const buyAsset = (payload) => ({
+  type: BUY_ASSET,
+  payload: payload,
 });
 
 export const getPortfolio = (user) => async (dispatch) => {
@@ -35,9 +45,32 @@ export const getPortfolio = (user) => async (dispatch) => {
   metaObj["followedByUsers"] = res.data.followedByUsers;
   metaObj["id"] = res.data.id;
   metaObj["name"] = res.data.name;
+  metaObj["cashUSD"] = res.data.cashUSD;
   await dispatch(setportfoliometa(metaObj));
 
   await dispatch(load(retObj));
+};
+
+export const sellPortfolioAsset = (
+  amount,
+  priceUSD,
+  portfolioId,
+  assetId
+) => async (dispatch) => {};
+export const buyPortfolioAsset = (
+  amount,
+  priceUSD,
+  portfolioId,
+  assetId
+) => async (dispatch) => {
+  const res = await fetch(`/api/portfolios/${portfolioId}/buy`, {
+    method: "PUT",
+    body: JSON.stringify({
+      amount: amount,
+      priceUSD: priceUSD,
+      assetId: assetId,
+    }),
+  });
 };
 
 const initialState = {};
@@ -47,6 +80,10 @@ const portfolioReducer = (state = initialState, action) => {
     case LOAD: {
       newState = Object.assign({ ...action.payload }, newState);
       return newState;
+    }
+    case SELL_ASSET: {
+    }
+    case BUY_ASSET: {
     }
     default:
       return state;

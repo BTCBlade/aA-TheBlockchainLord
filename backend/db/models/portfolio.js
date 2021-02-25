@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     "Portfolio",
     {
       name: DataTypes.STRING,
+      cashUSD: DataTypes.DECIMAL,
       createdByUserId: DataTypes.INTEGER,
       followedByUsers: DataTypes.ARRAY(DataTypes.INTEGER),
     },
