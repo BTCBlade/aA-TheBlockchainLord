@@ -49,7 +49,6 @@ router.put(
       throw Error("Not enough cash USD in account");
     } else {
       portfolio.cashUSD = parseFloat(portfolio.cashUSD) - costInUSD;
-      console.log(portfolio);
       await portfolio.save();
     }
 
@@ -101,6 +100,13 @@ router.put(
     const amount = parseFloat(req.body.amount);
     const priceUSD = parseFloat(req.body.priceUSD);
 
+    //2. add to cashUSD balance
+    const portfolio = await db.Portfolio.findByPk(portfolioId);
+    const amountToAdd = amount * priceUSD;
+
+    portfolio.cashUSD = parseFloat(portfolio.cashUSD) + amountToAdd;
+    await portfolio.save();
+
     //1. update or remove PortfolioAssetJoins Entry
     const PAJres = await db.PortfolioAssetsJoins.findAll({
       where: {
@@ -115,12 +121,19 @@ router.put(
       PAJEntry.quantityOfAsset = parseFloat(PAJEntry.quantityOfAsset) - amount;
       const newHistoryEntry = JSON.stringify({
         date: Date.parse(new Date()),
-        quantity: amount,
-        purchasePrice: priceUSD * -1,
+        quantity: amount * -1,
+        purchasePrice: priceUSD,
       });
       PAJEntry.history = [...PAJEntry.history, newHistoryEntry];
+      await PAJEntry.save();
+      return res.json([portfolio, PAJEntry]);
     } else {
       //destroy entry
+      await PAJEntry.destroy();
+      return res.json([
+        portfolio,
+        { assetId: PAJEntry.assetId, portfolioId: false },
+      ]);
     }
   })
 );

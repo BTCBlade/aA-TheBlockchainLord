@@ -134,9 +134,8 @@ export default function PortfolioTable() {
     const logo = assets[asset.id].assetDetails.logo;
     const name = assets[asset.id].name + " " + assets[asset.id].symbol;
     const currentPrice = assets[asset.id].quote.USD.price;
-    const net =
-      currentPrice * asset.quantityOfAsset -
-      asset.costAvg * asset.quantityOfAsset;
+    const net = (currentPrice - asset.costAvg) * asset.quantityOfAsset;
+    console.log(asset.quantityOfAsset);
     const percent_change_24h = assets[asset.id].quote.USD.percent_change_24h;
     const percent_change_7d = assets[asset.id].quote.USD.percent_change_7d;
 

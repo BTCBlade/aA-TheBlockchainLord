@@ -3,6 +3,8 @@
 .auto {
   font-weight: bold;
   position: relative;
+  display: flex;
+  flex-direction: row;
 }
 
 .auto > input {
@@ -35,8 +37,6 @@
 .auto-dropdown {
   position: absolute;
   background-color: white;
-  left: 10px;
-  top: 35px;
-  padding: 10px;
-  border: 1px solid black;
+  left: 15px;
+  top: 15px;
 }

@@ -49,6 +49,10 @@ export default function BuySellForm({ asset, setShowModal }) {
       alert("You dont own any " + asset.symbol);
       return;
     }
+    if (assetAmount === 0) {
+      alert("You can not sell zero " + asset.symbol);
+      return;
+    }
     if (assetAmount > quantityOfAsset) {
       setAssetAmount(quantityOfAsset);
     }

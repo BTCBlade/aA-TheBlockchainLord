@@ -13,9 +13,9 @@ const load = (portfolio) => ({
   type: LOAD,
   payload: portfolio,
 });
-const sellAsset = () => ({
+const sellAsset = (PAJEntry) => ({
   type: SELL_ASSET,
-  payload: "notsure",
+  payload: PAJEntry,
 });
 const buyAsset = (PAJEntry) => ({
   type: BUY_ASSET,
@@ -70,6 +70,10 @@ export const sellPortfolioAsset = (
       assetId: assetId,
     }),
   });
+
+  dispatch(updatePortfolioMetaCash(res.data[0].cashUSD));
+  console.log(res.data[1]);
+  dispatch(sellAsset(res.data[1]));
 };
 export const buyPortfolioAsset = (
   sessionUser,
@@ -100,6 +104,19 @@ const portfolioReducer = (state = initialState, action) => {
       return newState;
     }
     case SELL_ASSET: {
+      if (action.payload.portfolioId) {
+        //if owner still have some amount of asset
+        newState[action.payload.assetId].quantityOfAsset =
+          action.payload.quantityOfAsset;
+        newState[
+          action.payload.assetId
+        ].history = action.payload.history.map((ele) => JSON.parse(ele));
+      } else {
+        //owner owns zero of asset
+        delete newState[action.payload.assetId];
+        console.log(newState);
+      }
+      return newState;
     }
     case BUY_ASSET: {
       if (newState[action.payload.assetId]) {

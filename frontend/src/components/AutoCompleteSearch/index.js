@@ -32,13 +32,14 @@ function AutoComplete({ setAssetDetailsData }) {
       const assetDetailsObj = { rank: asset.id };
       setAssetDetailsData(assetDetailsObj);
     }
+    setInputVal("");
   };
 
   const matches = () => {
     const inputLength = inputVal.length;
     const matches = [];
 
-    if (inputLength === 0) return names.slice(0, 5);
+    if (inputLength === 0) return [];
 
     names.forEach((name) => {
       //   const nameSegment = name.slice(0, inputLength);

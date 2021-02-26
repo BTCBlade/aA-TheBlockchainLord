@@ -8,3 +8,8 @@
   .MuiTableCell-stickyHeader {
   position: sticky;
 } */
+
+.asset-display-buttons-container {
+  display: flex;
+  flex-direction: row;
+}

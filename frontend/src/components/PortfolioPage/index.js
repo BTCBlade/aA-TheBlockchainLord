@@ -6,6 +6,7 @@ import { getPortfolio } from "../../store/portfolio";
 export default function PortfolioPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const portfolio = useSelector((state) => state.portfolio);
+  const portfoliometa = useSelector((state) => state.loading.portfoliometa);
   const assets = useSelector((state) => state.assets);
   const dispatch = useDispatch();
   const [totalWorth, setTotalWorth] = useState(0);

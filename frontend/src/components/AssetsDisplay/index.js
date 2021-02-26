@@ -96,7 +96,7 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
 
   return (
     <Paper className={classes.root}>
-      <TableContainer className={classes.container}>
+      <div className="asset-display-buttons-container">
         <button className="redux-button" onClick={handleUpdateClick}>
           Update Data
         </button>
@@ -104,6 +104,8 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
           Auto Update
         </button>
         <AutoCompleteSearch setAssetDetailsData={setAssetDetailsData} />
+      </div>
+      <TableContainer className={classes.container}>
         <Table aria-label="sticky table">
           <TableHead>
             <TableRow>
