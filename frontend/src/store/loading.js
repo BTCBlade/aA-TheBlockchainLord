@@ -4,6 +4,14 @@ const SET_IS_PORTFOLIO_LOADED = "loading/setisPortfolioLoaded";
 const SET_WATCHLISTID = "loading/setwatchlistId";
 const SET_PORTFOLIOID = "loading/setportfolioId";
 const SET_PORTFOLIO_META = "loading/setportfoliometa";
+const UPDATE_PORTFOLIO_META_CASH = "loading/updateportfoliometacash";
+
+export const updatePortfolioMetaCash = (new_cashUSD) => {
+  return {
+    type: UPDATE_PORTFOLIO_META_CASH,
+    payload: new_cashUSD,
+  };
+};
 
 export const setisAssetsLoaded = (isLoaded) => {
   return {
@@ -70,6 +78,10 @@ const loadingReducer = (state = initialState, action) => {
     }
     case SET_PORTFOLIO_META: {
       newState.portfoliometa = action.payload;
+      return newState;
+    }
+    case UPDATE_PORTFOLIO_META_CASH: {
+      newState.portfoliometa.cashUSD = parseFloat(action.payload);
       return newState;
     }
     default:

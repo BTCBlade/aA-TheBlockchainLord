@@ -27,20 +27,55 @@ export default function BuySellForm({ asset, setShowModal }) {
   }, [assetAmount, usdAmount]);
 
   const handleBuyAsset = async () => {
+    if (assetAmount === 0) {
+      return;
+    }
+    if (usdAmount > portfoliometa.cashUSD) {
+      alert("you dont have enough USD to make this purchase");
+      return;
+    }
     await dispatch(
-      buyPortfolioAsset(assetAmount, assetPrice, portfoliometa.id, asset.id)
+      buyPortfolioAsset(
+        sessionUser,
+        assetAmount,
+        assetPrice,
+        portfoliometa.id,
+        asset.id
+      )
     );
-    dispatch(getPortfolio(sessionUser));
   };
-  const handleSellAsset = () => {};
+  const handleSellAsset = async () => {
+    if (quantityOfAsset === 0) {
+      alert("You dont own any " + asset.symbol);
+      return;
+    }
+    if (assetAmount > quantityOfAsset) {
+      setAssetAmount(quantityOfAsset);
+    }
+    await dispatch(
+      sellPortfolioAsset(
+        sessionUser,
+        assetAmount,
+        assetPrice,
+        portfoliometa.id,
+        asset.id
+      )
+    );
+  };
+  const handleSellMax = () => {
+    setAssetAmount(quantityOfAsset);
+  };
   return (
     <div>
       <h3>{asset.symbol} - USD</h3>
       <div>
-        <span>USD Balance: {portfoliometa.cashUSD} </span>
+        <span>USD Balance: {portfoliometa.cashUSD.toFixed(2)} </span>
         <span>
           {asset.symbol} Balance:{" "}
           {portfolio[asset.id] && portfolio[asset.id].quantityOfAsset}
+        </span>
+        <span>
+          Quote ${assetPrice.toFixed(2)}/{asset.symbol}
         </span>
       </div>
       <div>
@@ -52,8 +87,7 @@ export default function BuySellForm({ asset, setShowModal }) {
         ></input>
         <button onClick={handleBuyAsset}>Buy</button>
         <button onClick={handleSellAsset}>Sell</button>
-        <button>Sell Max</button>
-        <button>Buy Max</button>
+        <button onClick={handleSellMax}>Sell Max</button>
       </div>
       <div>
         <label>usd-amount</label>

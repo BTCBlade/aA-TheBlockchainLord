@@ -1,5 +1,9 @@
 import { fetch } from "./csrf";
-import { setportfolioId, setportfoliometa } from "./loading";
+import {
+  setportfolioId,
+  setportfoliometa,
+  updatePortfolioMetaCash,
+} from "./loading";
 
 const LOAD = "portfolio/LOAD";
 const SELL_ASSET = "portfolio/SELL_ASSET";
@@ -13,9 +17,9 @@ const sellAsset = () => ({
   type: SELL_ASSET,
   payload: "notsure",
 });
-const buyAsset = (payload) => ({
+const buyAsset = (PAJEntry) => ({
   type: BUY_ASSET,
-  payload: payload,
+  payload: PAJEntry,
 });
 
 export const getPortfolio = (user) => async (dispatch) => {
@@ -45,19 +49,30 @@ export const getPortfolio = (user) => async (dispatch) => {
   metaObj["followedByUsers"] = res.data.followedByUsers;
   metaObj["id"] = res.data.id;
   metaObj["name"] = res.data.name;
-  metaObj["cashUSD"] = res.data.cashUSD;
+  metaObj["cashUSD"] = parseFloat(res.data.cashUSD);
   await dispatch(setportfoliometa(metaObj));
 
   await dispatch(load(retObj));
 };
 
 export const sellPortfolioAsset = (
+  sessionUser,
   amount,
   priceUSD,
   portfolioId,
   assetId
-) => async (dispatch) => {};
+) => async (dispatch) => {
+  const res = await fetch(`api/portfolios/${portfolioId}/sell`, {
+    method: "PUT",
+    body: JSON.stringify({
+      amount: amount,
+      priceUSD: priceUSD,
+      assetId: assetId,
+    }),
+  });
+};
 export const buyPortfolioAsset = (
+  sessionUser,
   amount,
   priceUSD,
   portfolioId,
@@ -71,6 +86,9 @@ export const buyPortfolioAsset = (
       assetId: assetId,
     }),
   });
+
+  dispatch(updatePortfolioMetaCash(res.data[0].cashUSD));
+  dispatch(buyAsset(res.data[1]));
 };
 
 const initialState = {};
@@ -84,6 +102,23 @@ const portfolioReducer = (state = initialState, action) => {
     case SELL_ASSET: {
     }
     case BUY_ASSET: {
+      if (newState[action.payload.assetId]) {
+        newState[action.payload.assetId].quantityOfAsset =
+          action.payload.quantityOfAsset;
+        newState[action.payload.assetId].costAvg = action.payload.costAvg;
+        newState[
+          action.payload.assetId
+        ].history = action.payload.history.map((ele) => JSON.parse(ele));
+      } else {
+        newState[action.payload.assetId] = {
+          id: action.payload.assetId,
+          portfolioId: action.payload.portfolioId,
+          quantityOfAsset: action.payload.quantityOfAsset,
+          costAvg: action.payload.costAvg,
+          history: [JSON.parse(action.payload.history)],
+        };
+      }
+      return newState;
     }
     default:
       return state;

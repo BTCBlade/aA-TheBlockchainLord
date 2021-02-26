@@ -18,11 +18,9 @@ module.exports = {
       },
       quantityOfAsset: {
         type: Sequelize.DECIMAL,
-        allowNull: false,
       },
       costAvg: {
         type: Sequelize.DECIMAL,
-        allowNull: false,
       },
       history: {
         type: Sequelize.ARRAY(Sequelize.TEXT),

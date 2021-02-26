@@ -95,7 +95,7 @@ function Row(props) {
                   <TableRow>
                     <TableCell>Date</TableCell>
                     <TableCell>Quantity</TableCell>
-                    <TableCell align="right">Purchase Price</TableCell>
+                    <TableCell align="right">Purchase/Sell Price</TableCell>
                     <TableCell align="right">Total Cost ($)</TableCell>
                   </TableRow>
                 </TableHead>
@@ -103,7 +103,7 @@ function Row(props) {
                   {row.history.map((historyRow) => (
                     <TableRow key={historyRow.date}>
                       <TableCell component="th" scope="row">
-                        {Date(historyRow.date)}
+                        {historyRow.date}
                       </TableCell>
                       <TableCell>{historyRow.quantity}</TableCell>
                       <TableCell align="right">
@@ -124,32 +124,6 @@ function Row(props) {
   );
 }
 
-// Row.propTypes = {
-//   row: PropTypes.shape({
-//     calories: PropTypes.number.isRequired,
-//     carbs: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     history: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         amount: PropTypes.number.isRequired,
-//         customerId: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//       })
-//     ).isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     protein: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
-
-// const rows = [
-//   createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 3.99),
-//   createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 4.99),
-//   createData("Eclair", 262, 16.0, 24, 6.0, 3.79),
-//   createData("Cupcake", 305, 3.7, 67, 4.3, 2.5),
-//   createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
-// ];
-
 export default function PortfolioTable() {
   const dispatch = useDispatch();
   const assets = useSelector((state) => state.assets);
@@ -158,13 +132,17 @@ export default function PortfolioTable() {
   const rows = Object.values(portfolio).map((asset) => {
     const assetId = asset.id;
     const logo = assets[asset.id].assetDetails.logo;
-    const name = assets[asset.id].name + " " + asset.symbol;
+    const name = assets[asset.id].name + " " + assets[asset.id].symbol;
     const currentPrice = assets[asset.id].quote.USD.price;
     const net =
       currentPrice * asset.quantityOfAsset -
       asset.costAvg * asset.quantityOfAsset;
     const percent_change_24h = assets[asset.id].quote.USD.percent_change_24h;
     const percent_change_7d = assets[asset.id].quote.USD.percent_change_7d;
+
+    asset.history.forEach((ele) => {
+      ele.date = new Date(ele.date).toString();
+    });
 
     return createData(
       assetId,

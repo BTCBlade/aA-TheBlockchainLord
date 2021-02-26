@@ -87,8 +87,41 @@ router.put(
       ];
       await PAJEntry.save();
     }
+    //attach portfolio.cashUSD for redux store loading.portfoliometa.cashUSD update
 
-    return res.json(PAJEntry);
+    return res.json([portfolio, PAJEntry]);
+  })
+);
+
+router.put(
+  "/:id(\\d+)/sell",
+  asyncHandler(async (req, res) => {
+    const portfolioId = parseInt(req.params.id, 10);
+    const assetId = req.body.assetId;
+    const amount = parseFloat(req.body.amount);
+    const priceUSD = parseFloat(req.body.priceUSD);
+
+    //1. update or remove PortfolioAssetJoins Entry
+    const PAJres = await db.PortfolioAssetsJoins.findAll({
+      where: {
+        assetId: assetId,
+        portfolioId: portfolioId,
+      },
+    });
+    const PAJEntry = PAJres[0];
+    if (parseFloat(PAJEntry.quantityOfAsset) - amount >= 0.0001) {
+      //then update entry
+
+      PAJEntry.quantityOfAsset = parseFloat(PAJEntry.quantityOfAsset) - amount;
+      const newHistoryEntry = JSON.stringify({
+        date: Date.parse(new Date()),
+        quantity: amount,
+        purchasePrice: priceUSD * -1,
+      });
+      PAJEntry.history = [...PAJEntry.history, newHistoryEntry];
+    } else {
+      //destroy entry
+    }
   })
 );
 
