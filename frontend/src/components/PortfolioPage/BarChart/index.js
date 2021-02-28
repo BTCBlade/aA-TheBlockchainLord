@@ -1,5 +1,6 @@
 import React from "react";
-import { Bar } from "@reactchartjs/react-chart.js";
+import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 
 const data = {
   labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -69,23 +70,39 @@ const options = {
 
 export default function BarChart({ height, width }) {
   const portfolio = useSelector((state) => state.portfolio);
+  const assets = useSelector((state) => state.assets);
   const labels = Object.values(portfolio).map((asset) => {
     return assets[asset.id].symbol;
   });
   const transaction_counts = Object.values(portfolio).map((asset) => {
     return asset.history.length;
   });
+  const length = labels.length;
+  const backgroundColor = backgroundColors.slice(0, length);
+  const borderColor = borderColors.slice(0, length);
   const history_data = {
     labels: labels,
     datasets: [
       {
-        label: "Number of Transactions",
+        label: "# of trades",
         data: transaction_counts,
         backgroundColor: backgroundColor,
         borderColor: borderColor,
         borderWidth: 1,
       },
     ],
+  };
+  const options = {
+    maintainAspectRatio: false,
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
   };
   return (
     <>

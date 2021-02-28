@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import BuySellModal from "../../BuySellModal";
+import PortfolioBuySellModal from "../../PortfolioBuySellModal";
 
 const useRowStyles = makeStyles({
   root: {
@@ -77,8 +77,18 @@ function Row(props) {
           <img className="logo-img" alt="logo" src={row.logo}></img>
           {row.name}
         </TableCell>
-        <TableCell align="right">{row.net}</TableCell>
-        <TableCell align="right">{row.quantity}</TableCell>
+        <TableCell
+          onClick={() => handlePortfolioAssetClick(row.assetId)}
+          align="right"
+        >
+          {row.net}
+        </TableCell>
+        <TableCell
+          onClick={() => handlePortfolioAssetClick(row.assetId)}
+          align="right"
+        >
+          {row.quantity}
+        </TableCell>
         <TableCell align="right">{row.costAvg}</TableCell>
         <TableCell align="right">{row.percent_change_24h}</TableCell>
         <TableCell align="right">{row.percent_change_7d}</TableCell>
@@ -110,7 +120,9 @@ function Row(props) {
                         {historyRow.purchasePrice}
                       </TableCell>
                       <TableCell align="right">
-                        {historyRow.quantity * historyRow.purchasePrice}
+                        {(
+                          historyRow.quantity * historyRow.purchasePrice
+                        ).toFixed(2)}
                       </TableCell>
                     </TableRow>
                   ))}

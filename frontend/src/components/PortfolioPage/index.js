@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPortfolio } from "../../store/portfolio";
 import BarChart from "./BarChart";
+import PortfolioPieChart from "../PortfolioPieChart";
+import "./PortfolioPage.css";
 
 export default function PortfolioPage() {
   const sessionUser = useSelector((state) => state.session.user);
@@ -14,7 +16,7 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     dispatch(getPortfolio(sessionUser));
-  }, []);
+  }, [dispatch]);
 
   let tempTotal = 0;
   for (let key in portfolio) {
@@ -30,7 +32,12 @@ export default function PortfolioPage() {
       <h5>Total Portfolio Worth in USD: {tempTotal.toFixed(2)}</h5>
       <h5>Total Liquid Cash USD:{portfoliometa.cashUSD.toFixed(2)}</h5>
       <div className="charts_container">
-        <BarChar height={150} width={150} />
+        <div className="chart_pie">
+          <PortfolioPieChart height={60} width={60} />
+        </div>
+        <div className="chart_bar">
+          <BarChart height={110} width={60} />
+        </div>
       </div>
       <PortfolioTable />
     </>

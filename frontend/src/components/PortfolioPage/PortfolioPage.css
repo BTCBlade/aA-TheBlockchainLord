@@ -1,0 +1,16 @@
+.charts_container {
+  display: grid;
+  grid-template-areas:
+    "pie bar"
+    "pie bar";
+  grid-template-rows: 1fr 1fr;
+  height: 20%;
+  margin-right: 5%;
+}
+
+.chart_pie {
+  grid-area: pie;
+}
+.chart_bar {
+  grid-area: bar;
+}
