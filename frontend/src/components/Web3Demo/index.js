@@ -76,14 +76,9 @@ export default function Web3Demo() {
   }, []);
   return (
     <>
-      {walletAmount && (
+      {walletAmount !== 0 && (
         <>
-          <h2>
-            Web3 Blockchain/ETH Smart Contract Demo{" "}
-            <a href="https://github.com/Klongrich/HelloWorld_Dapp_Example">
-              Special thanks to Klongrich's github
-            </a>
-          </h2>
+          <h2>Web3 Blockchain/ETH Smart Contract Demo</h2>
           <h2>Total Amount: {walletAmount} ETH</h2>
           <h2>Enter Word:</h2>
           <textarea
