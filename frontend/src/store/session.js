@@ -1,5 +1,7 @@
 import { fetch } from "./csrf";
 import { setwatchlistId, setportfolioId } from "./loading";
+import { logoutWatchlist } from "./watchlist";
+import { logoutPortfolio } from "./portfolio";
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
@@ -71,6 +73,8 @@ export const logout = () => async (dispatch) => {
     method: "DELETE",
   });
   dispatch(removeUser());
+  dispatch(logoutWatchlist());
+  dispatch(logoutPortfolio());
   return response;
 };
 const initialState = { user: null };

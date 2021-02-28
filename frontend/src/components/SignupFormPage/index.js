@@ -16,18 +16,6 @@ function SignupFormPage() {
 
   const [validationErrors, setValidationErrors] = useState([]);
 
-  useEffect(() => {
-    setValidationErrors([]);
-    const errorsArr = validate();
-    setValidationErrors((prev) => [...prev, ...errorsArr]);
-    if (validationErrors.length === 0) {
-      setDisabledButton(false);
-    } else {
-      setDisabledButton(true);
-    }
-  }, [username, email, password]);
-
-  if (sessionUser) return <Redirect to="/" />;
   const validate = () => {
     const validationErrors = [];
     // const emailPattern = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
@@ -42,6 +30,18 @@ function SignupFormPage() {
 
     return validationErrors;
   };
+  useEffect(() => {
+    setValidationErrors([]);
+    const errorsArr = validate();
+    setValidationErrors((prev) => [...prev, ...errorsArr]);
+    if (validationErrors.length === 0) {
+      setDisabledButton(false);
+    } else {
+      setDisabledButton(true);
+    }
+  }, [username, email, password, validationErrors.length]);
+
+  if (sessionUser) return <Redirect to="/" />;
   const handleSubmit = (e) => {
     e.preventDefault();
     setValidationErrors([]);

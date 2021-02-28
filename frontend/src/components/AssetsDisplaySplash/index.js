@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -37,7 +37,6 @@ const useStyles = makeStyles({
 });
 
 export default function AssetsDisplay({ setAssetDetailsData }) {
-  const dispatch = useDispatch();
   const assets = useSelector((state) => state.assets);
 
   const [page, setPage] = useState(0);

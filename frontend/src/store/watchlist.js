@@ -5,6 +5,7 @@ const LOAD = "watchlist/LOAD";
 const LOAD_LIVE_QUOTES = "watchlist/LOAD_LIVE_QUOTES";
 const ADD_ONE_ASSET = "watchlist/ADD_ONE_ASSET";
 const REMOVE_ONE_ASSET = "watchlist/REMOVE_ONE_ASSET";
+const LOG_OUT = "watchlist/LOG_OUT";
 
 const load = (watchlist) => ({
   type: LOAD,
@@ -24,6 +25,13 @@ const addOneAsset = (newWatchlist) => ({
   type: ADD_ONE_ASSET,
   payload: newWatchlist,
 });
+
+export const logoutWatchlist = () => {
+  return {
+    type: LOG_OUT,
+    payload: {},
+  };
+};
 
 export const getWatchlist = (user) => async (dispatch) => {
   const responseUser = await fetch(`/api/users/${user.id}`);
@@ -115,6 +123,9 @@ const watchlistReducer = (state = initialState, action) => {
         newState[key].quote = action.payload[newState[key].cmcId].quote;
       }
       return newState;
+    }
+    case LOG_OUT: {
+      return {};
     }
     default:
       return state;

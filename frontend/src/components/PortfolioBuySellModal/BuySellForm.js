@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import {
-  getPortfolio,
-  sellPortfolioAsset,
-  buyPortfolioAsset,
-} from "../../store/portfolio";
+import { sellPortfolioAsset, buyPortfolioAsset } from "../../store/portfolio";
 
 export default function BuySellForm({ asset, setShowModal }) {
   const dispatch = useDispatch();
@@ -19,12 +15,12 @@ export default function BuySellForm({ asset, setShowModal }) {
   const [assetAmount, setAssetAmount] = useState(0);
   const [usdAmount, setUSDAmount] = useState(0);
 
-  const [validationErrors, setValidationErrors] = useState([]);
+  //const [validationErrors, setValidationErrors] = useState([]);
 
   useEffect(() => {
-    setValidationErrors([]);
+    //setValidationErrors([]);
     setUSDAmount(assetAmount * assetPrice);
-  }, [assetAmount, usdAmount]);
+  }, [assetAmount, usdAmount, assetPrice]);
 
   const handleBuyAsset = async () => {
     if (assetAmount === 0) {

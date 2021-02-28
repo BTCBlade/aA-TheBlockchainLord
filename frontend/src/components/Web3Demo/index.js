@@ -1,42 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Web3DemoABI from "./Web3Demo.json";
-import styled from "styled-components";
 import Web3 from "web3";
-
-// export const MoblieButton = styled.div`
-//   margin-top: 25px;
-
-//   padding-top: 10px;
-//   padding-bottom: 10px;
-
-//   font-size: 20px;
-//   text-align: center;
-//   width: 15%;
-//   height: 20px;
-//   border-radius: 10px;
-//   border: 2px #6685ff solid;
-//   font-family: sans-serif;
-//   color: #0a3cff;
-//   background-color: #a8baff;
-//   box-shadow: 1px 2px;
-// `;
-
-// export const TextArea = styled.input`
-//   margin-bottom: 0px;
-//   font-size: 22px;
-//   width: 47%;
-//   text-align: center;
-
-//   border-radius: 42px;
-//   border: 2px #6685ff solid;
-//   padding-top: 5px;
-//   padding-bottom: 5px;
-//   padding-left: 10px;
-//   :focus {
-//     outline: 0;
-//     box-shadow: 0 0 10px blue;
-//   }
-// `;
 
 const Web3DemoContractAddress = "0xb7D8cba348ef05cF4B888f7976A4FE7744fa3dc0";
 export default function Web3Demo() {
@@ -59,7 +23,6 @@ export default function Web3Demo() {
     }
 
     let wallet = await loadWeb3();
-    console.log(wallet);
 
     if (wallet) {
       const web3 = window.web3;
@@ -97,7 +60,6 @@ export default function Web3Demo() {
   }
   async function Read_Word() {
     const web3 = window.web3;
-    const Ethaccounts = await web3.eth.getAccounts();
     const HelloContract = new web3.eth.Contract(
       Web3DemoABI.abi,
       Web3DemoContractAddress

@@ -8,6 +8,7 @@ import {
 const LOAD = "portfolio/LOAD";
 const SELL_ASSET = "portfolio/SELL_ASSET";
 const BUY_ASSET = "portfolio/BUY_ASSET";
+const LOG_OUT = "portfolio/LOG_OUT";
 
 const load = (portfolio) => ({
   type: LOAD,
@@ -21,6 +22,12 @@ const buyAsset = (PAJEntry) => ({
   type: BUY_ASSET,
   payload: PAJEntry,
 });
+export const logoutPortfolio = () => {
+  return {
+    type: LOG_OUT,
+    payload: {},
+  };
+};
 
 export const getPortfolio = (user) => async (dispatch) => {
   const responseUser = await fetch(`/api/users/${user.id}`);
@@ -136,6 +143,9 @@ const portfolioReducer = (state = initialState, action) => {
         };
       }
       return newState;
+    }
+    case LOG_OUT: {
+      return {};
     }
     default:
       return state;

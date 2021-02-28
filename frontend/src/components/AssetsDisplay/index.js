@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -10,7 +10,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import AutoCompleteSearch from "../AutoCompleteSearch";
-import { CronJob } from "cron";
 
 import { getAssetsLiveQuotes } from "../../store/assets";
 import "./AssetsDisplay.css";
@@ -45,10 +44,6 @@ export default function AssetsDisplay({ setAssetDetailsData }) {
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
-
-  useEffect(() => {
-    //await dispatch(getAssetsLiveQuotes(assets));
-  }, [dispatch]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

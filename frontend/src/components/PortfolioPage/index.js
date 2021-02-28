@@ -1,5 +1,5 @@
 import PortfolioTable from "./PortfolioTable";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPortfolio } from "../../store/portfolio";
 import BarChart from "./BarChart";
@@ -12,11 +12,10 @@ export default function PortfolioPage() {
   const portfoliometa = useSelector((state) => state.loading.portfoliometa);
   const assets = useSelector((state) => state.assets);
   const dispatch = useDispatch();
-  const [totalWorth, setTotalWorth] = useState(0);
 
   useEffect(() => {
     dispatch(getPortfolio(sessionUser));
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   let tempTotal = 0;
   for (let key in portfolio) {

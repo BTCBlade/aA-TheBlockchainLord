@@ -5,7 +5,6 @@ import ProfileButton from "./ProfileButton";
 import SignUpButton from "../SignUpButton";
 import LoginFormModal from "../LoginFormModal";
 import LogoIcon from "../LogoIcon";
-import AutoCompleteSearch from "../AutoCompleteSearch";
 
 import "./Navigation.css";
 

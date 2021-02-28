@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import WatchList from "../WatchList";
 import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
-import PortfolioDisplay from "../PortfolioPage";
 import { getPortfolio } from "../../store/portfolio";
 import PortfolioPieChart from "../PortfolioPieChart";
 
@@ -21,15 +20,11 @@ export default function Dashboard() {
     price: "15.44",
     change7d: "-6.96",
     change24h: "-9.04",
-    logo: "https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png",
-    name: "Polkadot",
-    price: "15.44",
-    symbol: "DOT",
   });
 
   useEffect(() => {
     dispatch(getPortfolio(sessionUser));
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   return (
     <>

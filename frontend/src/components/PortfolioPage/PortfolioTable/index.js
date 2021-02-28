@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import PropTypes from "prop-types";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import PortfolioBuySellModal from "../../PortfolioBuySellModal";
+// import PortfolioBuySellModal from "../../PortfolioBuySellModal";
 
 const useRowStyles = makeStyles({
   root: {
@@ -137,7 +137,6 @@ function Row(props) {
 }
 
 export default function PortfolioTable() {
-  const dispatch = useDispatch();
   const assets = useSelector((state) => state.assets);
   const portfolio = useSelector((state) => state.portfolio);
 
@@ -146,7 +145,9 @@ export default function PortfolioTable() {
     const logo = assets[asset.id].assetDetails.logo;
     const name = assets[asset.id].name + " " + assets[asset.id].symbol;
     const currentPrice = assets[asset.id].quote.USD.price;
-    const net = (currentPrice - asset.costAvg) * asset.quantityOfAsset;
+    const net = parseFloat(
+      ((currentPrice - asset.costAvg) * asset.quantityOfAsset).toFixed(2)
+    );
     const percent_change_24h = assets[asset.id].quote.USD.percent_change_24h;
     const percent_change_7d = assets[asset.id].quote.USD.percent_change_7d;
 
@@ -173,7 +174,7 @@ export default function PortfolioTable() {
           <TableRow>
             <TableCell />
             <TableCell>Asset Name/Symbol</TableCell>
-            <TableCell align="right">Net Profit/Loss</TableCell>
+            <TableCell align="right">Net Profit/Loss ($)</TableCell>
             <TableCell align="right">Quantity</TableCell>
             <TableCell align="right">Cost Average</TableCell>
             <TableCell align="right">Gains/Losses 24h</TableCell>

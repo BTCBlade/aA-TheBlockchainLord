@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./AutoCompleteSearch.css";
-import { setAssetDetailsData } from "../Dashboard";
-import { set } from "js-cookie";
 
 function AutoComplete({ setAssetDetailsData }) {
   const [inputVal, setInputVal] = useState("");
   const assets = useSelector((state) => state.assets);
-  const id_name_symbol_arr = [];
   const names = [];
   for (let key in assets) {
     names.push([key, assets[key].name + " " + assets[key].symbol]);

@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import cron from "cron";
 
-import {
-  getWatchlist,
-  removeOneFromWatchlist,
-  getLiveWatchlistQuotes,
-} from "../../store/watchlist";
+import { getWatchlist, removeOneFromWatchlist } from "../../store/watchlist";
 import "./WatchList.css";
 
 export default function WatchList() {
