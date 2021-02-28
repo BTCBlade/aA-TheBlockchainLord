@@ -5,6 +5,7 @@ import AssetDetails from "../AssetDetailsModal/AssetDetails.js";
 import AssetsDisplay from "../AssetsDisplay";
 import PortfolioDisplay from "../PortfolioPage";
 import { getPortfolio } from "../../store/portfolio";
+import PortfolioPieChart from "../PortfolioPieChart";
 
 import "./Dashboard.css";
 
@@ -43,7 +44,8 @@ export default function Dashboard() {
           </div>
           <div className="dashboard-rightside-container">
             <div className="dashboard-portfolio">
-              <h5>Portfolio</h5>
+              <h2>Portfolio</h2>
+              <PortfolioPieChart height={100} width={100} />
             </div>
             <div className="dashboard-watchlists">
               <h2>Watchlist</h2> <WatchList className="dashboard-watchlist" />

@@ -11,21 +11,15 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded, setIsLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  // const cashUSD = useSelector((state) => state.loading.portfoliometa.cashUSD);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
-        <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
-        <NavLink to="/portfolio">Portfolio</NavLink>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </>
-    );
-  } else {
-    sessionLinks = (
-      <>
-        <LoginFormModal />
-        <SignUpButton />
+        <div classname="profile-button-div">
+          <ProfileButton user={sessionUser} setIsLoaded={setIsLoaded} />
+        </div>
       </>
     );
   }
@@ -38,6 +32,21 @@ function Navigation({ isLoaded, setIsLoaded }) {
       <NavLink to="/">
         <span className="project-name">BlockchainLords</span>
       </NavLink>
+      {sessionUser && (
+        <>
+          <div className="features-links">
+            <NavLink to="/portfolio">Portfolio</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </div>
+        </>
+      )}
+      {!sessionUser && (
+        <>
+          <div className="features-links"></div>
+          <LoginFormModal />
+          <SignUpButton />
+        </>
+      )}
       <ul>
         <li>{isLoaded && sessionLinks}</li>
       </ul>

@@ -1,0 +1,16 @@
+.web3textarea {
+  margin-bottom: 0px;
+  font-size: 22px;
+  width: 47%;
+  text-align: center;
+
+  border-radius: 42px;
+  border: 2px #6685ff solid;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+.web3textarea:focus {
+  outline: 0;
+  box-shadow: 0 0 10px blue;
+}

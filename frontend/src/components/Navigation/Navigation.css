@@ -34,10 +34,26 @@
 
 .navbar-top > ul {
   list-style-type: none;
+  margin-right: 1%;
+  width: 5%;
 }
 .logout-button {
   cursor: pointer;
 }
 
-.profile-dropdown {
+.features-links {
+  margin-left: auto;
+  margin-right: 3%;
+  text-decoration: none;
+}
+
+.features-links > a {
+  margin-left: 5%;
+  margin-right: 5%;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.features-links > a:hover {
+  color: #c7c9cd;
 }

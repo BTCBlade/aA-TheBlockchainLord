@@ -35,15 +35,14 @@ export default function AssetDetails({ asset }) {
             </a>
           </div>
 
-          <div className="buysell-btn">
-            <BuySellModal asset={asset} />
-          </div>
-
           <div className="assetDetails-body">
             <p>{asset.assetDetails.description}</p>
             <div>
               Tags:
               <div>{asset.tags}</div>
+            </div>
+            <div className="buysell-btn">
+              <BuySellModal displayText={"Buy/Sell"} asset={asset} />
             </div>
           </div>
 

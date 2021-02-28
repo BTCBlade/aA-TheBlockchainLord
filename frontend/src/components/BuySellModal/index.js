@@ -3,7 +3,7 @@ import { Modal } from "../../context/Modal";
 import BuySellForm from "./BuySellForm";
 import "./BuySellForm.css";
 
-export default function BuySellModal({ asset }) {
+export default function BuySellModal({ displayText, asset }) {
   const [showBuySellModal, setShowBuySellModal] = useState(false);
 
   if (showBuySellModal) {
@@ -19,9 +19,7 @@ export default function BuySellModal({ asset }) {
     );
   } else {
     return (
-      <button onClick={() => setShowBuySellModal(true)}>
-        Test Button Modal
-      </button>
+      <button onClick={() => setShowBuySellModal(true)}>{displayText}</button>
     );
   }
 }

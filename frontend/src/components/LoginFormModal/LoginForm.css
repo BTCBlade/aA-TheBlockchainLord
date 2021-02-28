@@ -5,7 +5,8 @@ button.login {
   background-color: inherit;
   font-size: 1rem;
   font-weight: 500;
-  margin: auto;
+  margin-left: auto;
+  margin-right: 2%;
   padding: auto;
 }
 

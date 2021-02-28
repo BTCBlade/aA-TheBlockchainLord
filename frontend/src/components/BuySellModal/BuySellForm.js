@@ -70,36 +70,43 @@ export default function BuySellForm({ asset, setShowModal }) {
     setAssetAmount(quantityOfAsset);
   };
   return (
-    <div>
+    <div className="buysell-div">
       <h3>{asset.symbol} - USD</h3>
-      <div>
-        <span>USD Balance: {portfoliometa.cashUSD.toFixed(2)} </span>
-        <span>
-          {asset.symbol} Balance:{" "}
-          {portfolio[asset.id] && portfolio[asset.id].quantityOfAsset}
-        </span>
-        <span>
-          Quote ${assetPrice.toFixed(2)}/{asset.symbol}
-        </span>
+      <div className="buysell-header">
+        <ul>
+          <li>USD Balance: {portfoliometa.cashUSD.toFixed(2)} </li>
+          <li>
+            {asset.symbol} Balance:{" "}
+            {portfolio[asset.id] && portfolio[asset.id].quantityOfAsset}
+          </li>
+          <li>
+            Quote ${assetPrice.toFixed(2)}/{asset.symbol}
+          </li>
+        </ul>
       </div>
       <div>
-        <label>asset-amount</label>
-        <input
-          type="asset-amount"
-          value={assetAmount}
-          onChange={(e) => setAssetAmount(e.target.value)}
-        ></input>
+        <div>
+          <label>asset-amount</label>
+          <input
+            type="asset-amount"
+            value={assetAmount}
+            onChange={(e) => setAssetAmount(e.target.value)}
+          ></input>
+        </div>
         <button onClick={handleBuyAsset}>Buy</button>
         <button onClick={handleSellAsset}>Sell</button>
         <button onClick={handleSellMax}>Sell Max</button>
       </div>
       <div>
-        <label>usd-amount</label>
-        <input
-          type="usd-amount"
-          value={usdAmount}
-          onChange={(e) => setUSDAmount(e.target.value)}
-        ></input>
+        <div>
+          <label>usd-amount</label>
+          <input
+            type="usd-amount"
+            value={usdAmount}
+            onChange={(e) => setUSDAmount(e.target.value)}
+          ></input>
+        </div>
+
         <button>Buy</button>
         <button>Sell</button>
       </div>
