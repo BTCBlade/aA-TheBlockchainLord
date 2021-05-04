@@ -1,0 +1,4 @@
+
+1. git push heroku main:master
+2. heroku run npm run sequelize db:migrate
+3. heroku run npm run sequelize db:seed:all
