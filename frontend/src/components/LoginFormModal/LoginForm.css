@@ -5,7 +5,7 @@ button.login {
   background-color: inherit;
   font-size: 1rem;
   font-weight: 500;
-  margin-left: auto;
+  margin-left: 5rem;
   margin-right: 2%;
   padding: auto;
 }
@@ -38,6 +38,7 @@ button.login:hover {
   margin-bottom: 0.15rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+
   border: solid 1px;
   border-color: rgb(90, 90, 102);
 }
@@ -52,11 +53,12 @@ button.login:hover {
 .LoginForm > div > h5 {
   margin-top: 0;
   margin-bottom: 0.4rem;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 .LoginForm > div > a {
   text-decoration: none;
-  font-size: 0.2rem;
+  margin-top: 0.1rem;
+  font-size: 0.7rem;
   font-weight: 900;
   color: #7a7963;
 }
@@ -74,11 +76,11 @@ button.login:hover {
 }
 .LoginForm input::placeholder {
   text-align: center;
-  font-size: 0.4rem;
+  font-size: 0.6rem;
 }
 .login-error-space {
   height: 1.25rem;
-  font-size: 0.2rem;
+  font-size: 0.6rem;
   list-style: none;
   padding-left: 0;
   margin-top: 0.25rem;

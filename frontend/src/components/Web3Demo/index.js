@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Web3DemoABI from "./Web3Demo.json";
 import Web3 from "web3";
 
+import "./Web3Demo.css";
 const Web3DemoContractAddress = "0xb7D8cba348ef05cF4B888f7976A4FE7744fa3dc0";
 export default function Web3Demo() {
   const [walletAmount, setWalletAmount] = useState(0);
@@ -79,6 +80,28 @@ export default function Web3Demo() {
       {walletAmount !== 0 && (
         <>
           <h2>Web3 Blockchain/ETH Smart Contract Demo</h2>
+          <div className="instructions">
+            <h5>1. Switch to Ropsten Test Net</h5>
+            <h5>
+              2. Use either of these faucets to request some test ETHs this{" "}
+              <a href="https://faucet.ropsten.be/">faucet</a> or{" "}
+              <a href="https://faucet.metamask.io/">faucet</a>
+            </h5>
+            <h5>
+              3. Enter a string that will live forever on the blockchain, then
+              click "Post to SmartContract"
+            </h5>
+            <h5>
+              4. Confirm transaction, look under metamask's "Activity" and see
+              this broadcast on Etherscan
+            </h5>
+            <h5>5. After about 10 seconds, click "Read Smart Contract".</h5>
+            <h5>
+              6. If a miner has confirmed transaction, the word you've entered
+              should get exported from the smartcontract via a function I've
+              created and then displayed on this page
+            </h5>
+          </div>
           <h2>Total Amount: {walletAmount} ETH</h2>
           <h2>Enter Word:</h2>
           <textarea

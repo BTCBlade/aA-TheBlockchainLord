@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then((data) => setIsLoaded(true));
     dispatch(getAllAssets()).then((data) => setIsLoadedAssets(true));
-    // }
   }, [dispatch]);
 
   return (

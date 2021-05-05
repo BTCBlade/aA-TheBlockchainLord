@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import AssetsDisplaySplash from "../AssetsDisplaySplash";
+import { getAssetsLiveQuotes } from "../../store/assets";
 import "./PublicHomePage.css";
 
 export default function PublicHomePage() {
+  const dispatch = useDispatch();
+  const assets = useSelector((state) => state.assets);
+
+  useEffect(() => {
+    dispatch(getAssetsLiveQuotes(assets));
+  }, []);
   return (
     <div className="splash-main-container">
       <div className="splash-sub-container-1">

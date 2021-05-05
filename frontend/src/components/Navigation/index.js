@@ -42,6 +42,9 @@ function Navigation({ isLoaded, setIsLoaded }) {
       {!sessionUser && (
         <>
           <div className="features-links"></div>
+          <NavLink className="web3demo" to="/web3demo">
+            Web3Demo
+          </NavLink>
           <LoginFormModal />
           <SignUpButton />
         </>
