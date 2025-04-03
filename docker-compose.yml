@@ -1,0 +1,25 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend  # Path to your frontend directory
+    ports:
+      - "3000:3000"         # Expose frontend on port 3000
+    depends_on:
+      - backend             # Ensure backend is started first
+    networks:
+      - app-network
+    environment:
+      - REACT_APP_API_URL=http://backend:5000  # Use backend service name instead of localhost
+
+  backend:
+    build:
+      context: ./backend  # Path to your backend directory
+    ports:
+      - "5000:5000"        # Expose backend on port 5000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge  # Use the default bridge network driver

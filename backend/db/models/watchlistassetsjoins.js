@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     watchlistId: DataTypes.INTEGER,
     assetId: DataTypes.INTEGER
   }, {});
-  WatchlistAssetsJoins.associate = function(models) {
+  WatchlistAssetsJoins.associate = function (models) {
     // associations can be defined here
   };
   return WatchlistAssetsJoins;

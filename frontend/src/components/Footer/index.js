@@ -15,16 +15,16 @@ export default function Footer() {
 
         <div className="footer-center">
           <a href="https://www.twitch.tv/btcblade">
-            <i class="fab fa-twitch fa-2x"></i>
+            <i className="fab fa-twitch fa-2x"></i>
           </a>
           <a href="https://github.com/btcblade">
-            <i class="fab fa-github-square fa-2x"></i>
+            <i className="fab fa-github-square fa-2x"></i>
           </a>
           <a href="mailto: tommynchen@gmail.com">
-            <i class="fas fa-envelope-square fa-2x"></i>
+            <i className="fas fa-envelope-square fa-2x"></i>
           </a>
           <a href="https://www.linkedin.com/in/tommy-nienchi-chen-a131451b3/">
-            <i class="fab fa-linkedin fa-2x"></i>
+            <i className="fab fa-linkedin fa-2x"></i>
           </a>
         </div>
         <div className="footer-right">

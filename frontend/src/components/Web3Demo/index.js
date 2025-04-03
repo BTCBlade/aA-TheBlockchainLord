@@ -105,7 +105,7 @@ export default function Web3Demo() {
           <h2>Total Amount: {walletAmount} ETH</h2>
           <h2>Enter Word:</h2>
           <textarea
-            class="web3textarea"
+            className="web3textarea"
             type="text"
             value={currentWord}
             onChange={(e) => setCurrentWord(e.target.value)}
