@@ -1,6 +1,6 @@
-# **Welcome to the [BlockchainLords](https://aa-theblockchainlord.herokuapp.com/) github repo!**
+# **Welcome to the [BlockchainLords](https://tdnmmx8mhm.us-west-2.awsapprunner.com/) github repo!**
 
-[Live Heroku Link](https://aa-theblockchainlord.herokuapp.com/)
+[Live Heroku Link](https://tdnmmx8mhm.us-west-2.awsapprunner.com/)
 One week solo project done at a/A
 React-Redux-ExpressAPI-Sequelize-Postgres
 
